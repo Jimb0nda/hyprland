@@ -200,6 +200,17 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
+ * Custom System
+ * ----------------------------------------------------- */
+
+ #custom-system {
+    margin: 5px 1px 5px 10px;
+    padding:0px;
+    font-size:20px;
+    color: #1793d1;
+}
+
+/* -----------------------------------------------------
  * Hardware Group
  * ----------------------------------------------------- */
 
@@ -274,7 +285,7 @@ window#waybar.empty #window {
     font-size: 16px;
     color: @textcolor2;
     border-radius: 15px;
-    margin: 10px 15px 10px 0px;
+    margin: 10px 10px 10px 0px;
 }
 
 #bluetooth.off {
@@ -292,7 +303,7 @@ window#waybar.empty #window {
     font-size: 16px;
     color: @textcolor2;
     border-radius: 15px;
-    margin: 10px 15px 10px 0px;
+    margin: 10px 10px 10px 5px;
 }
 
 #battery.charging, #battery.plugged {
@@ -353,4 +364,3 @@ label:focus {
 #network.disconnected {
     background-color: #f53c3c;
 }
-
