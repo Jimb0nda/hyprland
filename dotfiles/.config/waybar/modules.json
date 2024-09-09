@@ -57,9 +57,9 @@
 
     // Clock
     "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        //"timezone": "Europe/London",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
+        "format-alt": "{:%d-%m-%Y}"
     },
 
     // System
@@ -161,15 +161,13 @@
 
     // Bluetooth
     "bluetooth": {
-        "format-disabled": "",
-        "format-on": "  󰂯  ",
-        "format-off": "󰂲",
-        "interval": 30,
-        "on-click": "blueman-manager",
-        "format-no-controller": "",
-        "format-connected": " 󰂰 ",
-        "tooltip-format-connected": "{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+        "format": "<span font='24px'>  </span>",
+		"format-disabled": "<span font='24px'>  󰂲  </span>",
+		"format-connected": "<span font='24px'>   {num_connections}  </span>",
+		"tooltip-format": "{device_alias}",
+		"tooltip-format-connected": " {device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}",
+		"on-click": "blueman-manager"
     },
 
     // Other
