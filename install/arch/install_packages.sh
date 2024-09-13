@@ -23,10 +23,12 @@ installer_packages=(
     "zoxide"
     "imagemagick"
     "bat"
+    "brightnessctl"
 )
 
 installer_yay=(
-    "wlogout" 
+    "wlogout"
+    "wev"
 )
 
 # PLEASE NOTE: Add more packages at the end of the following command
