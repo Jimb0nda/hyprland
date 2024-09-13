@@ -277,6 +277,19 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
+ * Backlight
+ * ----------------------------------------------------- */
+
+ #backlight {
+    background-color: @backgroundlight;
+    font-size: 16px;
+    color: @textcolor2;
+    border-radius: 15px;
+    margin: 10px 10px 10px 0px;
+    font-weight: bold;
+}
+
+/* -----------------------------------------------------
  * Bluetooth
  * ----------------------------------------------------- */
 

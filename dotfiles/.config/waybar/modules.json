@@ -187,4 +187,11 @@
         },
         "on-click-right": "hyprlock"        
     }
+
+    // Backlight
+    "backlight": {
+	//"device": "intel_backlight",
+	"format": "  {percent}% {icon}  ",
+	"format-icons": ["", ""]
+    }
 }

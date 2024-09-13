@@ -20,7 +20,7 @@
     "modules-center": [
     ],
     "modules-right": [
-        "mpd", 
+        "backlight", 
         "bluetooth",
         "pulseaudio", 
         "network", 
