@@ -14,14 +14,9 @@ installer_packages=(
     "wlogout"
     "yazi"
     "ffmpegthumbnailer"
-    "p7zip"
-    "jq"
-    "poppler"
     "fd"
     "ripgrep"
     "fzf"
-    "zoxide"
-    "imagemagick"
     "bat"
     "brightnessctl"
 )
@@ -30,6 +25,7 @@ installer_yay=(
     "wlogout"
     "wev"
     "starship"
+    "fastfetch"
 )
 
 # PLEASE NOTE: Add more packages at the end of the following command

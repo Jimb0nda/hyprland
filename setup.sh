@@ -112,3 +112,5 @@ cd Hyprland
 source install/library.sh
 source install/install_required.sh
 source install/install_packages.sh
+
+cp -r dotfiles/.config/. ~/.config
