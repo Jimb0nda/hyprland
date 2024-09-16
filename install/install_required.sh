@@ -9,6 +9,7 @@ installer_packages=(
     "rsync"
     "figlet"
     "git"
+    "base-devel"
 )
 
 echo ":: Installing on $distro"
