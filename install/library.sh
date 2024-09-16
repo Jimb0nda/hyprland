@@ -53,7 +53,6 @@ _installYay() {
         echo "yay is already installed!"
     else
         echo "yay is not installed. Will be installed now!"
-        _installPackagesPacman "base-devel"
         SCRIPT=$(realpath "$0")
         temp_path=$(dirname "$SCRIPT")
         echo $temp_path
