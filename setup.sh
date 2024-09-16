@@ -93,20 +93,20 @@ fi
 cd ~/Dev
 
 # Remove existing folder
-if [ -d ~/Dev/Hyprland ] ;then
-    rm -rf ~/Dev/Hyprland
+if [ -d ~/Dev/hyprland ] ;then
+    rm -rf ~/Dev/hyprland
     echo ":: Existing installation folder removed"
 fi
 
 # Clone the packages
-git clone --depth 1 https://github.com/Jimb0nda/Hyprland.git
+git clone --depth 1 https://github.com/Jimb0nda/hyprland.git
 echo ":: Installation files cloned into Dev folder"
 
 git clone --depth 1 https://github.com/Jimb0nda/Cpp.git
 echo ":: Dev Projects cloned into Dev folder"
 
 # Change into the folder
-cd Hyprland
+cd hyprland
 
 # Start the script
 source install/library.sh
