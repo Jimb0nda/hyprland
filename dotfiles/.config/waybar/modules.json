@@ -142,11 +142,11 @@
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{icon}  {volume}%",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        "format-bluetooth": "  {volume}%  {icon} {format_source}",
+        "format-bluetooth-muted": "   {icon} {format_source}",
+        "format-muted": "  {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "󰝟",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -161,9 +161,9 @@
 
     // Bluetooth
     "bluetooth": {
-        "format": "<span font='24px'>  </span>",
-		"format-disabled": "<span font='24px'>  󰂲  </span>",
-		"format-connected": "<span font='24px'>   {num_connections}  </span>",
+        "format": "",
+		"format-disabled": "󰂲",
+		"format-connected": " {num_connections}",
 		"tooltip-format": "{device_alias}",
 		"tooltip-format-connected": " {device_enumerate}",
 		"tooltip-format-enumerate-connected": "{device_alias}",
@@ -191,7 +191,7 @@
     // Backlight
     "backlight": {
 	//"device": "intel_backlight",
-	"format": "  {percent}% {icon}  ",
+	"format": "{percent}% {icon}",
 	"format-icons": ["", ""]
     }
 }

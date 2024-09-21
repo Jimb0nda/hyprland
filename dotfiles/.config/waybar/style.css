@@ -161,22 +161,6 @@ window#waybar.empty #window {
     font-size: 16px;
 }
 
-#custom-quicklink1,
-#custom-quicklink2,
-#custom-quicklink3,
-#custom-quicklink4,
-#custom-quicklink5,
-#custom-quicklink6,
-#custom-quicklink7,
-#custom-quicklink8,
-#custom-quicklink9,
-#custom-quicklink10 {
-    padding:0px;
-    margin-right: 7px;
-    font-size:20px;
-    color: @iconcolor;
-}
-
 /* -----------------------------------------------------
  * Custom Modules
  * ----------------------------------------------------- */
@@ -281,6 +265,7 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
  #backlight {
+    padding: 0 12px;
     background-color: @backgroundlight;
     font-size: 16px;
     color: @textcolor2;
@@ -294,14 +279,16 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
  #bluetooth, #bluetooth.on, #bluetooth.connected {
+    padding: 0 12px;
     background-color: @backgroundlight;
-    font-size: 16px;
+    font-size: 20px;
     color: @textcolor2;
     border-radius: 15px;
     margin: 10px 10px 10px 0px;
 }
 
 #bluetooth.off {
+    padding: 0 12px;
     background-color: transparent;
     padding: 0px;
     margin: 0px;
@@ -329,6 +316,11 @@ window#waybar.empty #window {
         background-color: @backgroundlight;
         color: @textcolor2;
     }
+}
+
+#battery.warning:not(.charging) {
+    background-color: #FFBF00;
+    color: @textcolor2;
 }
 
 #battery.critical:not(.charging) {
