@@ -37,6 +37,13 @@ window#waybar {
     transition-duration: .5s;
 }
 
+@keyframes blink {
+    to {
+        background-color: @backgroundlight;
+        color: @textcolor1;
+    }
+}
+
 /* -----------------------------------------------------
  * Workspaces 
  * ----------------------------------------------------- */
@@ -142,30 +149,23 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
- * Custom Quicklinks
+ * Initial Pill Style Setup
  * ----------------------------------------------------- */
 
 #network,
 #pulseaudio,
 #battery,
+#temperature,
+#backlight,
+#battery,
 #clock {
-    margin-right: 20px;
     font-size: 20px;
     font-weight: bold;
     color: @iconcolor;
     padding: 4px 10px 2px 10px;
     font-size: 16px;
-}
-
-/* -----------------------------------------------------
- * Custom Modules
- * ----------------------------------------------------- */
-
-#custom-appmenu {
-    background-color: @backgroundlight;
-    color: @textcolor1;
     border-radius: 15px;
-    margin: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 0px;
 }
 
 /* -----------------------------------------------------
@@ -183,10 +183,10 @@ window#waybar.empty #window {
  * Custom System
  * ----------------------------------------------------- */
 
- #custom-system {
+ #custom-archLogo {
     margin: 5px 1px 5px 10px;
     padding:0px;
-    font-size:20px;
+    font-size:30px;
     color: #1793d1;
 }
 
@@ -194,11 +194,27 @@ window#waybar.empty #window {
  * Hardware Group
  * ----------------------------------------------------- */
 
- #disk,#memory,#cpu,#language {
+#memory,#cpu {
+    font-size: 18px;
     margin:0px;
     padding:0px;
-    font-size:16px;
     color:@iconcolor;
+}
+
+#temperature {
+    background-color: @goodOrConnected;
+    color: @textcolor1;
+    margin: 10px 10px 10px 0px;
+}
+
+#temperature.critical {
+    background-color: @issueOrOff;
+    color: @textcolor2;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 /* -----------------------------------------------------
@@ -210,7 +226,6 @@ window#waybar.empty #window {
     font-size: 16px;
     color: @textcolor1;
     border-radius: 15px;
-    margin: 10px 7px 10px 0px;
 }
 
 /* -----------------------------------------------------
@@ -219,10 +234,7 @@ window#waybar.empty #window {
 
 #pulseaudio {
     background-color: @backgroundlight;
-    font-size: 16px;
     color: @textcolor1;
-    border-radius: 15px;
-    margin: 10px 10px 10px 0px;
 }
 
 #pulseaudio.muted {
@@ -236,10 +248,7 @@ window#waybar.empty #window {
 
 #network {
     background-color: @backgroundlight;
-    font-size: 16px;
     color: @textcolor1;
-    border-radius: 15px;
-    margin: 10px 10px 10px 0px;
 }
 
 #network.ethernet {
@@ -248,12 +257,12 @@ window#waybar.empty #window {
 }
 
 #network.wifi {
-    background-color: #90EE90;
+    background-color: @goodOrConnected;
     color: @textcolor1;
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    background-color: @issueOrOff;
     color: @textcolor1;
 }
 
@@ -262,13 +271,8 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
  #backlight {
-    padding: 0 12px;
     background-color: @backgroundlight;
-    font-size: 16px;
     color: @textcolor1;
-    border-radius: 15px;
-    margin: 10px 10px 10px 0px;
-    font-weight: bold;
 }
 
 /* -----------------------------------------------------
@@ -302,22 +306,12 @@ window#waybar.empty #window {
 
 #battery {
     background-color: @goodOrConnected;
-    font-size: 16px;
     color: @textcolor1;
-    border-radius: 15px;
-    margin: 10px 10px 10px 5px;
 }
 
 #battery.charging, #battery.plugged {
     color: @textcolor1;
     background-color: @backgroundlight;
-}
-
-@keyframes blink {
-    to {
-        background-color: @backgroundlight;
-        color: @textcolor1;
-    }
 }
 
 #battery.warning:not(.charging) {
@@ -326,30 +320,13 @@ window#waybar.empty #window {
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
+    background-color: @issueOrOff;
     color: @textcolor2;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-}
-
-/* -----------------------------------------------------
- * Tray
- * ----------------------------------------------------- */
-
-#tray {
-    margin:0px 10px 0px 0px;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
 }
 
 /* -----------------------------------------------------
