@@ -7,50 +7,41 @@
 distro="arch"
 installer="arch"
 
-# Check if package is installed
-_isInstalledPacman() {
-    package="$1";
-    check="$(sudo pacman -Qs --color always "${package}" | grep "local" | grep "${package} ")";
-    if [ -n "${check}" ] ; then
-        echo 0; #'0' means 'true' in Bash
-        return; #true
-    fi;
-    echo 1; #'1' means 'false' in Bash
-    return; #false
-}
-
-# Install required packages
-_installPackagesPacman() {
-    toInstall=();
-    for pkg; do
-        if [[ $(_isInstalledPacman "${pkg}") == 0 ]]; then
-            echo "${pkg} is already installed.";
-            continue;
-        fi;
-        toInstall+=("${pkg}");
-    done;
-    if [[ "${toInstall[@]}" == "" ]] ; then
-        # echo "All pacman packages are already installed.";
-        return;
-    fi;
-    printf "Package not installed:\n%s\n" "${toInstall[@]}";
-    sudo pacman --noconfirm -S "${toInstall[@]}";
-}
-
 # ----------------------------------------------------- 
 # Packages
 # ----------------------------------------------------- 
 
-# Required packages for the installer on Arch
-installer_packages_arch=(
+PACMAN_PACKAGES=(
+    "wget"
+    "unzip"
+    "gum"
+    "rsync"
     "figlet"
     "git"
+    "base-devel"
+    "waybar"
+    "hyprpaper"
+    "hyprlock"
+    "firefox"
+    "vim"
+    "pavucontrol"
+    "bluez-utils"
+    "blueman"
+    "wlogout"
+    "yazi"
+    "ffmpegthumbnailer"
+    "fd"
+    "ripgrep"
+    "fzf"
+    "bat"
+    "brightnessctl"
 )
 
-# Required packages for the installer on Fedora
-installer_packages_fedora=(
-    "figlet"
-    "git"
+YAY_PACKAGES=(
+    "wlogout"
+    "wev"
+    "starship"
+    "fastfetch"
 )
 
 clear
@@ -74,8 +65,39 @@ EOF
 # ----------------------------------------------------- 
 # Installation for Arch
 # ----------------------------------------------------- 
-if [ "$installer" == "arch" ] ;then
-    _installPackagesPacman "${installer_packages_arch[@]}";
+
+# Function to install packages using pacman
+install_pacman_packages() {
+    echo "Installing packages from the official repository with pacman..."
+    sudo pacman -Syu --noconfirm   # Sync and update system
+    for package in "${PACMAN_PACKAGES[@]}"; do
+        echo "Installing $package..."
+        sudo pacman -S --noconfirm --needed "$package"
+    done
+}
+
+# Function to install packages using yay
+install_yay_packages() {
+    echo "Installing AUR packages with yay..."
+    yay -Syu --noconfirm  # Sync and update system
+    for package in "${YAY_PACKAGES[@]}"; do
+        echo "Installing $package..."
+        yay -S --noconfirm "$package"
+    done
+}
+
+# Check if pacman is installed
+if ! command -v pacman &> /dev/null
+then
+    echo "Pacman is not installed. Please ensure you are using an Arch-based system."
+    exit 1
+fi
+
+# Check if yay is installed
+if ! command -v yay &> /dev/null
+then
+    echo "yay is not installed. Installing yay..."
+    sudo pacman -S --noconfirm yay
 fi
 
 # Create Downloads folder if not exists
@@ -108,9 +130,10 @@ echo ":: Dev Projects cloned into Dev folder"
 # Change into the folder
 cd hyprland
 
-# Start the script
-source install/library.sh
-source install/install_required.sh
-source install/install_packages.sh
+# Run installation functions
+install_pacman_packages
+install_yay_packages
+echo "All packages installed successfully."
 
+#Copy config files from Git project to .config folder
 cp -r dotfiles/.config/. ~/.config
