@@ -8,6 +8,7 @@
 alias find='fzf --preview="bat --color=always {}"'
 alias edit='code $(fzf -m --preview="bat --color=always {}")'
 alias cdf='cd ~; cd $(fd --type directory --hidden | fzf)'
+alias auth='xhost +si:localuser:root'
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
