@@ -42,6 +42,7 @@ YAY_PACKAGES=(
     "wev"
     "starship"
     "fastfetch"
+    "visual-studio-code-bin"
 )
 
 clear
