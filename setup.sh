@@ -138,3 +138,5 @@ echo "All packages installed successfully."
 
 #Copy config files from Git project to .config folder
 cp -r dotfiles/.config/. ~/.config
+#Overwirte default bashrc file
+cp dotfiles/.bashrc ~/.bashrc
