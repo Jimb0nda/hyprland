@@ -140,3 +140,4 @@ echo "All packages installed successfully."
 cp -r dotfiles/.config/. ~/.config
 #Overwirte default bashrc file
 cp dotfiles/.bashrc ~/.bashrc
+source ~/.bashrc
