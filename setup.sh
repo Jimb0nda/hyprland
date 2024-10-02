@@ -35,6 +35,9 @@ PACMAN_PACKAGES=(
     "fzf"
     "bat"
     "brightnessctl"
+    "neovim"
+    "tmux"
+    "polkit-kde-agent"
 )
 
 YAY_PACKAGES=(
