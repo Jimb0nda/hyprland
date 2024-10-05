@@ -1,3 +1,1 @@
 # Hyprland Setup
-
-testing
