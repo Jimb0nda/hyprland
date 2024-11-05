@@ -48,6 +48,7 @@ YAY_PACKAGES=(
     "starship"
     "fastfetch"
     "visual-studio-code-bin"
+    "wttrbar"
 )
 
 clear

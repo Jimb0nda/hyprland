@@ -46,10 +46,10 @@
         
     // Weather
     "custom/weather": {
-        "format": "{}",
+        "format": "{}°",
         "tooltip": true,
-        "interval": 1800,
-        "exec": "$HOME/.config/assets/scripts/wttr.py",
+        "interval": 3600,
+        "exec": "wttrbar",
         "return-type": "json"
     },
 
