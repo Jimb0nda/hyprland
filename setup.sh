@@ -38,6 +38,8 @@ PACMAN_PACKAGES=(
     "neovim"
     "tmux"
     "polkit-kde-agent"
+    "noto-fonts-emoji"
+    "python-requests"
 )
 
 YAY_PACKAGES=(

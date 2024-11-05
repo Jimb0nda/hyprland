@@ -9,12 +9,12 @@
  * ----------------------------------------------------- 
 */
 
-@define-color backgroundlight #FFFFFF;
+@define-color backgroundlight #000000;
 @define-color workspacesbackground1 #FFFFFF;
 @define-color workspacesbackground2 #CCCCCC;
-@define-color bordercolor #FFFFFF;
-@define-color textcolor1 #000000;
-@define-color textcolor2 #FFFFFF;
+@define-color bordercolor cyan;
+@define-color textcolor1 #FFFFFF;
+@define-color textcolor2 #000000;
 @define-color iconcolor #FFFFFF;
 @define-color issueOrOff #f53c3c;
 @define-color goodOrConnected #90EE90;
@@ -56,7 +56,7 @@ window#waybar {
     font-weight: bold;
     font-style: normal;
     font-size: 16px;
-    color: @textcolor1;
+    color: @textcolor2;
 }
 
 #workspaces button {
@@ -64,21 +64,22 @@ window#waybar {
     margin: 4px 3px;
     border-radius: 15px;
     border: 0px;
-    color: @textcolor2;
+    color: @textcolor1;
     transition: all 0.3s ease-in-out;
 }
 
 #workspaces button.active {
     color: @textcolor1;
-    background: @workspacesbackground2;
+    border: 2px solid @bordercolor;
+    background: @backgroundlight;
     border-radius: 15px;
     min-width: 40px;
     transition: all 0.3s ease-in-out;
 }
 
 #workspaces button:hover {
-    color: @textcolor1;
-    background: @workspacesbackground2;
+    color: @textcolor2;
+    border: 2px solid @bordercolor;
     border-radius: 15px;
 }
 
@@ -158,13 +159,11 @@ window#waybar.empty #window {
 #temperature,
 #backlight,
 #battery,
-#clock {
-    font-size: 20px;
-    font-weight: bold;
-    color: @iconcolor;
-    padding: 4px 10px 2px 10px;
+#clockWeather {
     font-size: 16px;
-    border-radius: 15px;
+    font-weight: bold;
+    padding: 8px 10px 8px 10px;
+    border-radius: 10px;
     margin: 10px 10px 10px 0px;
 }
 
@@ -203,13 +202,15 @@ window#waybar.empty #window {
 
 #temperature {
     background-color: @goodOrConnected;
-    color: @textcolor1;
+    color: @textcolor2;
+    border: 2px solid @bordercolor;
     margin: 10px 10px 10px 0px;
 }
 
 #temperature.critical {
     background-color: @issueOrOff;
     color: @textcolor2;
+    border: 2px solid @bordercolor;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -218,14 +219,16 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
- * Clock
+ * Clock & Weather
  * ----------------------------------------------------- */
-
 #clock {
-    background-color: @backgroundlight;
-    font-size: 16px;
+    margin: 0px 15px 0px 0px;
+}
+
+#clockWeather {
     color: @textcolor1;
-    border-radius: 15px;
+    background-color: @backgroundlight;
+    border: 2px solid @bordercolor;
 }
 
 /* -----------------------------------------------------
@@ -233,13 +236,15 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #pulseaudio {
-    background-color: @backgroundlight;
     color: @textcolor1;
+    background-color: @backgroundlight;
+    border: 2px solid @bordercolor
 }
 
 #pulseaudio.muted {
-    background-color: @backgroundlight;
     color: @textcolor1;
+    background-color: @backgroundlight;
+    border: 2px solid @bordercolor
 }
 
 /* -----------------------------------------------------
@@ -247,32 +252,36 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #network {
-    background-color: @backgroundlight;
     color: @textcolor1;
+    background-color: @backgroundlight;
+    border: 2px solid @bordercolor
 }
 
 #network.ethernet {
-    background-color: @backgroundlight;
     color: @textcolor1;
+    background-color: @backgroundlight;
+    border: 2px solid @bordercolor
 }
 
 #network.wifi {
     background-color: @goodOrConnected;
-    color: @textcolor1;
+    color: @textcolor2;
+    border: 2px solid @bordercolor
 }
 
 #network.disconnected {
     background-color: @issueOrOff;
-    color: @textcolor1;
-}
+    color: @textcolor2;
+    border: 2px solid @bordercolor}
 
 /* -----------------------------------------------------
  * Backlight
  * ----------------------------------------------------- */
 
  #backlight {
-    background-color: @backgroundlight;
     color: @textcolor1;
+    background-color: @backgroundlight;
+    border: 2px solid @bordercolor;
 }
 
 /* -----------------------------------------------------
@@ -281,22 +290,23 @@ window#waybar.empty #window {
 
  #bluetooth, #bluetooth.on {
     padding: 0 12px;
-    background-color: @backgroundlight;
-    font-size: 20px;
     color: @textcolor1;
+    background-color: @backgroundlight;
+    border: 2px solid @bordercolor;
+    font-size: 20px;
     border-radius: 15px;
     margin: 10px 10px 10px 0px;
 }
 
 #bluetooth.connected {
     background-color: @goodOrConnected;
-    color: @textcolor1;
+    color: @textcolor2;
     font-size: 20px;
 }
 
 #bluetooth.disabled {
     background-color: @issueOrOff;
-    color: @textcolor1;
+    color: @textcolor2;
     font-size: 20px;
 }
 
@@ -306,22 +316,26 @@ window#waybar.empty #window {
 
 #battery {
     background-color: @goodOrConnected;
-    color: @textcolor1;
+    color: @textcolor2;
+    border: 2px solid @bordercolor;
 }
 
 #battery.charging, #battery.plugged {
     color: @textcolor1;
     background-color: @backgroundlight;
+    border: 2px solid @bordercolor;
 }
 
 #battery.warning:not(.charging) {
     background-color: #FFBF00;
-    color: @textcolor1;
+    color: @textcolor2;
+    border: 2px solid @bordercolor;
 }
 
 #battery.critical:not(.charging) {
     background-color: @issueOrOff;
     color: @textcolor2;
+    border: 2px solid @bordercolor;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;

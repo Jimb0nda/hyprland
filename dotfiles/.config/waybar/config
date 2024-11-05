@@ -17,18 +17,16 @@
         "custom/archLogo",
         "hyprland/workspaces"
     ],
-    "modules-center": [
+    "modules-center":[ 
+        "group/clockWeather"
     ],
     "modules-right": [
         "backlight", 
         "bluetooth",
         "pulseaudio", 
-        "network", 
-        "cpu", 
-        "memory",
+        "network",
         "temperature",
         "battery",
-        "clock",
         "custom/exit"
     ]
 }

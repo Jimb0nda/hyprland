@@ -4,17 +4,30 @@
         "on-click": "activate",
         "active-only": false,
         "all-outputs": true,
-        "format": "{}",
+        "format": "{icon}",
         "format-icons": {
-			"urgent": "",
-			"active": "",
-			"default": ""
+            "urgent": "",
+            "active": "",
+            "default": ""
         },
         "persistent-workspaces": {
-             "*": 5
-        }       
+            "*": 5
+        },
+        "format-icons": {
+            "1": "I",
+            "2": "II",
+            "3": "III",
+            "4": "IV",
+            "5": "V",
+            "6": "VI",
+            "7": "VII",
+            "8": "VIII",
+            "9": "IX",
+            "10": "X",
+
+        },       
     },
-    
+
     // Power Menu
     "custom/exit": {
         "format": "",
@@ -25,10 +38,28 @@
 
     // Clock
     "clock": {
+        "format": "{:%a, %d %b    %H:%M}",
         //"timezone": "Europe/London",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
         "format-alt": "{:%d-%m-%Y}"
     },
+        
+    // Weather
+    "custom/weather": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 1800,
+        "exec": "$HOME/.config/assets/scripts/wttr.py",
+        "return-type": "json"
+    },
+
+    "group/clockWeather": {
+		"orientation": "horizontal",
+		"modules": [
+			"clock",
+			"custom/weather",
+		]
+	},
 
     // System
     "custom/archLogo": {
@@ -62,8 +93,8 @@
         "path": "/",
         "on-click": "kitty -e btop"
     },
-    
-   // Network
+
+    // Network
     "network": {
         "format": "{ifname}",
         "format-wifi": "   {signalStrength}%",
@@ -84,8 +115,8 @@
             "critical": 15
         },
         "format": "{icon}   {capacity}%",
-        "format-charging": "󰂄  {capacity}%",
-        "format-plugged": "󰂄  {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
         "format-alt": "{icon}  {time}",
         "format-icons": [" ", " ", " ", " ", " "]
     },
@@ -113,12 +144,12 @@
     // Bluetooth
     "bluetooth": {
         "format": "",
-		"format-disabled": "",
-		"format-connected": " {num_connections}",
-		"tooltip-format": "{device_alias}",
-		"tooltip-format-connected": " {device_enumerate}",
-		"tooltip-format-enumerate-connected": "{device_alias}",
-		"on-click": "blueman-manager"
+        "format-disabled": "",
+        "format-connected": " {num_connections}",
+        "tooltip-format": "{device_alias}",
+        "tooltip-format-connected": " {device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "on-click": "blueman-manager"
     },
 
     // Other
@@ -141,7 +172,7 @@
 
     // Backlight
     "backlight": {
-        "format": "{percent}% {icon}",
+        "format": "{percent}%  {icon}",
         "format-icons": ["", ""]
     }
 }
