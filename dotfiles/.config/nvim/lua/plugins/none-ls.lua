@@ -1,0 +1,1 @@
+/home/james/.config/nvim/lua/plugins/none-ls.lua
