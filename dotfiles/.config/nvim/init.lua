@@ -14,18 +14,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Copying to system clipboard
--- From current cursor position to EOL (normal mode)
-vim.keymap.set('n', '<C-c>', '"+y$')
--- Current selection (visual mode)
-vim.keymap.set('v', '<C-c>', '"+y')
-
--- Cutting to system clipboard
--- From current cursor position to EOL (normal mode)
-vim.keymap.set('n', '<C-x>', '"+d$')
--- Current selection (visual mode)
-vim.keymap.set('v', '<C-x>', '"+d')
-
 require("vim-options")
 require("lazy").setup("plugins")
 
