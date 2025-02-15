@@ -25,9 +25,14 @@ alias newProj='dotnet new console -o'
 
 #Cpp
 build_cpp() {
-    cmake "$@" ..
-    cmake --build .
+    # Ensure build directory exists
+    mkdir -p build
+
+    # Run cmake commands from the source directory
+    cmake -B build "$@"
+    cmake --build build
 }
+
 create_lib() {
     if [[ $# -ne 2 ]]; then
         echo "Usage: create_lib <source_name> <library_name>"
@@ -90,4 +95,4 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 eval "$(starship init bash)"
-fastfetch
+#fastfetch

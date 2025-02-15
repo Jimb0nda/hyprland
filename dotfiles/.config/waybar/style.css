@@ -169,10 +169,12 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
- * Custom Exit
+ * Group Menu
  * ----------------------------------------------------- */
-
-#custom-exit {
+#custom-menu,
+#custom-logout,
+#custom-restart,
+#custom-shutdown {
     margin: 2px 20px 0px 0px;
     padding:0px;
     font-size:20px;

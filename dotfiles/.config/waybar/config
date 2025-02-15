@@ -27,6 +27,6 @@
         "network",
         "temperature",
         "battery",
-        "custom/exit"
+        "group/menu"
     ]
 }

@@ -29,10 +29,27 @@
     },
 
     // Power Menu
-    "custom/exit": {
+    "custom/menu": {
+        "format": "󰍜",
+        "tooltip-format": "Powermenu",
+        "tooltip": false
+    },
+    "custom/logout": {
+        "format": "󰗽",
+        "tooltip-format": "Powermenu",
+        "on-click": "killall -9 Hyprland",
+        "tooltip": false
+    },
+    "custom/shutdown": {
         "format": "",
         "tooltip-format": "Powermenu",
-        "on-click": "wlogout -b 4",
+        "on-click": "poweroff",
+        "tooltip": false
+    },
+    "custom/restart": {
+        "format": "",
+        "tooltip-format": "Powermenu",
+        "on-click": "reboot",
         "tooltip": false
     },
 
@@ -87,17 +104,18 @@
         "on-click": "kitty -e btop"
     },
     
-    "group/hardware": {
-        "orientation": "inherit",
+    "group/menu": {
+        "orientation": "horizontal",
         "drawer": {
             "transition-duration": 500,
             "children-class": "not-power",
             "transition-left-to-right": true,
         },
 		"modules": [
-			"cpu",
-			"memory",
-            "disk"
+			"custom/menu",
+			"custom/logout",
+            "custom/shutdown",
+            "custom/restart"
 		]
 	},
 
