@@ -1,7 +1,5 @@
 
-# Run package installation
-echo ":: Installing yay..."
-source scripts/install_yay.sh
+source scripts/install_functions.sh
 
 # Run package installation
 echo ":: Installing required packages..."
