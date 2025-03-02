@@ -45,7 +45,7 @@ YAY_PACKAGES=(
 
 # Check yay is installed
 echo ":: Checking yay is installed"
-_installyay
+_installYay
 
 # Install required packages
 echo ":: Installing system packages..."
