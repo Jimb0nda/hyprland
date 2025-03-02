@@ -30,23 +30,9 @@ echo ":: Hyprland setup cloned"
 git clone --depth 1 https://github.com/Jimb0nda/Cpp.git
 echo ":: Dev Projects cloned"
 
-HYPRLAND_DIR="$HOME/Dev/hyprland"
-# Ensure the hyprland directory exists
-if [[ ! -d "$HYPRLAND_DIR" ]]; then
-    echo -e "${RED}Error: Expected directory $HYPRLAND_DIR does not exist!${NONE}"
-    exit 1
-fi
-
-# Ensure scripts directory exists
-SCRIPTS_DIR="$HYPRLAND_DIR/scripts"
-if [[ ! -d "$SCRIPTS_DIR" ]]; then
-    echo -e "${RED}Error: Expected scripts directory $SCRIPTS_DIR does not exist!${NONE}"
-    exit 1
-fi
-
-# Run package installation FIRST using the correct path
+# Run package installation
 echo ":: Installing required packages..."
-bash "$SCRIPTS_DIR/install_packages.sh"
+source scripts/install_packages.sh
 
 # Ensure .config directory exists
 mkdir -p ~/.config
