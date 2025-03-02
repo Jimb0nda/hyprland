@@ -31,6 +31,10 @@ git clone --depth 1 https://github.com/Jimb0nda/Cpp.git
 echo ":: Dev Projects cloned"
 
 # Run package installation
+echo ":: Installing yay..."
+source scripts/install_yay.sh
+
+# Run package installation
 echo ":: Installing required packages..."
 source scripts/install_packages.sh
 
