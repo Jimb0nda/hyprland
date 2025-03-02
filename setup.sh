@@ -32,7 +32,7 @@ echo ":: Dev Projects cloned"
 
 # Run package installation
 echo ":: Installing required packages..."
-source scripts/install_packages.sh
+bash ~/Dev/hyprland/scripts/install_packages.sh
 
 # Ensure .config directory exists
 mkdir -p ~/.config
