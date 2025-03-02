@@ -42,6 +42,11 @@ YAY_PACKAGES=(
     "lazydocker"
     "lazygit"
 )
+
+# Check yay is installed
+echo ":: Checking yay is installed"
+_installyay
+
 # Install required packages
 echo ":: Installing system packages..."
 _installPackages "${PACMAN_PACKAGES[@]}"
