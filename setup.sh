@@ -30,6 +30,7 @@ echo ":: Hyprland setup cloned"
 git clone --depth 1 https://github.com/Jimb0nda/Cpp.git
 echo ":: Dev Projects cloned"
 
+cd hyprland
 # Load and run package installation
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 bash "$SCRIPT_DIR/scripts/install_packages.sh"
@@ -39,11 +40,24 @@ mkdir -p ~/.config
 
 # Create symbolic links for .config files
 echo ":: Creating symlinks for config files..."
-ln -sf ~/Dev/hyprland/dotfiles/.config/* ~/.config/
+for file in ~/Dev/hyprland/dotfiles/.config/*; do
+    filename=$(basename "$file")
+    target="$HOME/.config/$filename"
+
+    # Remove existing file or directory before linking
+    if [[ -e "$target" || -L "$target" ]]; then
+        echo ":: Removing existing $target"
+        rm -rf "$target"
+    fi
+
+    ln -s "$file" "$target"
+    echo ":: Symlinked $file -> $target"
+done
 echo ":: Symlinks created for .config files."
 
 # Create symbolic link for .bashrc
 if [ -f ~/.bashrc ] || [ -L ~/.bashrc ]; then
+    echo ":: Removing existing ~/.bashrc"
     rm ~/.bashrc
 fi
 ln -s ~/Dev/hyprland/dotfiles/.bashrc ~/.bashrc
