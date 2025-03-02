@@ -2,8 +2,8 @@
 
 # Load package lists and functions
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-source "$SCRIPT_DIR/config/packages.sh"
-source "$SCRIPT_DIR/scripts/install_functions.sh"
+source "~/Dev/hyprland/config/packages.sh"
+source "~/Dev/hyprland/scripts/install_functions.sh"
 
 # Ensure yay is installed
 _installYay
