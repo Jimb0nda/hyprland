@@ -1,13 +1,47 @@
 #!/bin/bash
 
-# Load package lists and functions
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-source "~/Dev/hyprland/config/packages.sh"
-source "~/Dev/hyprland/scripts/install_functions.sh"
+# System packages to install via Pacman
+PACMAN_PACKAGES=(
+    "wget"
+    "unzip"
+    "gum"
+    "rsync"
+    "figlet"
+    "git"
+    "base-devel"
+    "waybar"
+    "hyprpaper"
+    "hyprlock"
+    "firefox"
+    "vim"
+    "pavucontrol"
+    "bluez-utils"
+    "blueman"
+    "wlogout"
+    "yazi"
+    "ffmpegthumbnailer"
+    "fd"
+    "ripgrep"
+    "fzf"
+    "bat"
+    "brightnessctl"
+    "neovim"
+    "tmux"
+    "polkit-kde-agent"
+    "noto-fonts-emoji"
+    "python-requests"
+)
 
-# Ensure yay is installed
-_installYay
-
+# AUR packages to install via Yay
+YAY_PACKAGES=(
+    "wlogout"
+    "wev"
+    "starship"
+    "fastfetch"
+    "wttrbar"
+    "lazydocker"
+    "lazygit"
+)
 # Install required packages
 echo ":: Installing system packages..."
 _installPackages "${PACMAN_PACKAGES[@]}"
