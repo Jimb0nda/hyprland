@@ -1,63 +1,10 @@
 #!/bin/bash
 
-# ----------------------------------------------------- 
-# Functions for Setup
-# ----------------------------------------------------- 
-
-distro="arch"
-installer="arch"
-
-# ----------------------------------------------------- 
-# Packages
-# ----------------------------------------------------- 
-
-PACMAN_PACKAGES=(
-    "wget"
-    "unzip"
-    "gum"
-    "rsync"
-    "figlet"
-    "git"
-    "base-devel"
-    "waybar"
-    "hyprpaper"
-    "hyprlock"
-    "firefox"
-    "vim"
-    "pavucontrol"
-    "bluez-utils"
-    "blueman"
-    "wlogout"
-    "yazi"
-    "ffmpegthumbnailer"
-    "fd"
-    "ripgrep"
-    "fzf"
-    "bat"
-    "brightnessctl"
-    "neovim"
-    "tmux"
-    "polkit-kde-agent"
-    "noto-fonts-emoji"
-    "python-requests"
-)
-
-YAY_PACKAGES=(
-    "wlogout"
-    "wev"
-    "starship"
-    "fastfetch"
-    "visual-studio-code-bin"
-    "wttrbar"
-)
-
-clear
-
-# Some colors
+# Set up colors
 GREEN='\033[0;32m'
 NONE='\033[0m'
 
-# Header
+clear
 echo -e "${GREEN}"
 cat <<"EOF"
  ____       _               
@@ -69,81 +16,41 @@ cat <<"EOF"
 
 EOF
 
-# ----------------------------------------------------- 
-# Installation for Arch
-# ----------------------------------------------------- 
+# Set up directories
+mkdir -p ~/Downloads ~/Dev
+echo ":: Directories ensured (Downloads, Dev)"
 
-# Function to install packages using pacman
-install_pacman_packages() {
-    echo "Installing packages from the official repository with pacman..."
-    sudo pacman -Syu --noconfirm   # Sync and update system
-    for package in "${PACMAN_PACKAGES[@]}"; do
-        echo "Installing $package..."
-        sudo pacman -S --noconfirm --needed "$package"
-    done
-}
-
-# Function to install packages using yay
-install_yay_packages() {
-    echo "Installing AUR packages with yay..."
-    yay -Syu --noconfirm  # Sync and update system
-    for package in "${YAY_PACKAGES[@]}"; do
-        echo "Installing $package..."
-        yay -S --noconfirm "$package"
-    done
-}
-
-# Check if pacman is installed
-if ! command -v pacman &> /dev/null
-then
-    echo "Pacman is not installed. Please ensure you are using an Arch-based system."
-    exit 1
-fi
-
-# Check if yay is installed
-if ! command -v yay &> /dev/null
-then
-    echo "yay is not installed. Installing yay..."
-    sudo pacman -S --noconfirm yay
-fi
-
-# Create Downloads folder if not exists
-if [ ! -d ~/Downloads ] ;then
-    mkdir ~/Downloads
-    echo ":: Downloads folder created"
-fi
-
-if [ ! -d ~/Dev ] ;then
-    mkdir ~/Dev
-    echo ":: Dev folder created"
-fi
-
-# Change into Downloads directory
+# Clone repositories
 cd ~/Dev
-
-# Remove existing folder
-if [ -d ~/Dev/hyprland ] ;then
-    rm -rf ~/Dev/hyprland
-    echo ":: Existing installation folder removed"
-fi
-
-# Clone the packages
+[[ -d "hyprland" ]] && rm -rf hyprland
 git clone --depth 1 https://github.com/Jimb0nda/hyprland.git
-echo ":: Installation files cloned into Dev folder"
+echo ":: Hyprland setup cloned"
 
+[[ -d "Cpp" ]] && rm -rf Cpp
 git clone --depth 1 https://github.com/Jimb0nda/Cpp.git
-echo ":: Dev Projects cloned into Dev folder"
+echo ":: Dev Projects cloned"
 
-# Change into the folder
-cd hyprland
+# Load and run package installation
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+bash "$SCRIPT_DIR/scripts/install_packages.sh"
 
-# Run installation functions
-install_pacman_packages
-install_yay_packages
-echo "All packages installed successfully."
+# Ensure .config directory exists
+mkdir -p ~/.config
 
-#Copy config files from Git project to .config folder
-cp -r dotfiles/.config/. ~/.config
-#Overwirte default bashrc file
-cp dotfiles/.bashrc ~/.bashrc
+# Create symbolic links for .config files
+echo ":: Creating symlinks for config files..."
+ln -sf ~/Dev/hyprland/dotfiles/.config/* ~/.config/
+echo ":: Symlinks created for .config files."
+
+# Create symbolic link for .bashrc
+if [ -f ~/.bashrc ] || [ -L ~/.bashrc ]; then
+    rm ~/.bashrc
+fi
+ln -s ~/Dev/hyprland/dotfiles/.bashrc ~/.bashrc
+echo ":: Symlink created for .bashrc."
+
+# Reload Bash configuration
 source ~/.bashrc
+
+echo ":: Setup complete!"
+
