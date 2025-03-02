@@ -16,6 +16,12 @@ cat <<"EOF"
 
 EOF
 
+# Check if git is installed
+if ! command -v git &>/dev/null; then
+    sudo pacman -S git 
+    exit 1
+fi
+
 # Set up directories
 mkdir -p ~/Downloads ~/Dev
 echo ":: Directories ensured (Downloads, Dev)"
