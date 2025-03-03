@@ -29,20 +29,22 @@ _isInstalled() {
 
 # Install required packages
 _installPackages() {
-    toInstall=();
+    toInstall=()
     for pkg; do
+        # Debugging output to check if the package is already installed
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
-            echo "${pkg} is already installed.";
-            continue;
-        fi;
-        toInstall+=("${pkg}");
-    done;
-    if [[ "${toInstall[@]}" == "" ]] ; then
-        # echo "All pacman packages are already installed.";
-        return;
-    fi;
-    printf "Package not installed:\n%s\n" "${toInstall[@]}";
-    sudo pacman --noconfirm -S "${toInstall[@]}";
+            echo "${pkg} is already installed. Skipping.";
+            continue
+        fi
+        toInstall+=("${pkg}")
+    done
+    if [[ ${#toInstall[@]} -eq 0 ]]; then
+        echo "All pacman packages are already installed."
+        return
+    fi
+    # Show the packages that will be installed
+    echo "Packages to be installed via pacman: ${toInstall[@]}"
+    sudo pacman --noconfirm -S "${toInstall[@]}"
 }
 
 _installPackagesYay() {
