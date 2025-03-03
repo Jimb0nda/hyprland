@@ -43,19 +43,34 @@ cd hyprland
 
 # Create symbolic links for .config files, copy directories
 echo ":: Creating symlinks for config files..."
+
+# Loop through all files and directories in the source directory
 for file in ~/Dev/hyprland/dotfiles/.config/*; do
     filename=$(basename "$file")
     target="$HOME/.config/$filename"
 
     # Check if it's a directory or a file
     if [[ -d "$file" ]]; then
-        # If it's a directory, copy it recursively
-        if [[ ! -d "$target" ]]; then
-            echo ":: Copying directory $file to $target"
-            cp -r "$file" "$target"
+        # If it's a directory, check if the target directory exists
+        if [[ -d "$target" ]]; then
+            # If the directory exists, remove all files in the directory
+            echo ":: Directory exists: $target. Removing files and symlinking from source."
+            rm -rf "$target"/*
         else
-            echo ":: Directory already exists: $target"
+            # If the directory doesn't exist, create it
+            echo ":: Creating directory: $target"
+            mkdir -p "$target"
         fi
+        # Recursively create symlinks for files inside the directory
+        for item in "$file"/*; do
+            ln_target="$target/$(basename "$item")"
+            if [[ -e "$ln_target" || -L "$ln_target" ]]; then
+                echo ":: Removing existing symlink or file at $ln_target"
+                rm -rf "$ln_target"
+            fi
+            ln -s "$item" "$ln_target"
+            echo ":: Symlinked $item -> $ln_target"
+        done
     elif [[ -f "$file" ]]; then
         # If it's a file, create a symlink
         if [[ -e "$target" || -L "$target" ]]; then
