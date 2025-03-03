@@ -61,7 +61,7 @@ for file in ~/Dev/hyprland/dotfiles/.config/*; do
             echo ":: Creating directory: $target"
             mkdir -p "$target"
         fi
-        # Recursively create symlinks for files inside the directory
+        # Recursively process files inside the directory
         for item in "$file"/*; do
             ln_target="$target/$(basename "$item")"
             if [[ -e "$ln_target" || -L "$ln_target" ]]; then
