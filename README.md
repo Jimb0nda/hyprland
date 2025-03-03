@@ -9,4 +9,4 @@ systemctl enable/start NetworkManager
 
 systemctl enable/start Bluetooth
 
-systemctl enable/start pipewire
+fprint-enroll
