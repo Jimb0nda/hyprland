@@ -44,41 +44,44 @@ cd hyprland
 # Create symbolic links for .config files, copy directories
 echo ":: Creating symlinks for config files..."
 # Loop through all files and directories in the source directory
-for file in ~/Dev/hyprland/dotfiles/.config/*; do
-    filename=$(basename "$file")
-    target="$HOME/.config/$filename"
 
-    # Check if it's a directory or a file
-    if [[ -d "$file" ]]; then
-        # If it's a directory, check if the target directory exists
-        if [[ -d "$target" ]]; then
-            # If the directory exists, remove all files in the directory
-            echo ":: Directory exists: $target. Removing files and symlinking from source."
-            rm -rf "$target"/*
-        else
-            # If the directory doesn't exist, create it
-            echo ":: Creating directory: $target"
-            mkdir -p "$target"
-        fi
-        # Recursively create symlinks for files inside the directory
-        for item in "$file"/*; do
-            ln_target="$target/$(basename "$item")"
-            if [[ -e "$ln_target" || -L "$ln_target" ]]; then
-                echo ":: Removing existing symlink or file at $ln_target"
-                rm -rf "$ln_target"
+for files in ~/Dev/hyprland/dotfiles/.config/*; do
+    # Variable to concatenate
+    target="$HOME/.config/"
+
+    # Loop through all files and directories recursively
+    find "$files" -print | while read file; do
+        if [[ -d "$file" ]]; then
+            # Extract relative path (everything after ".config/")
+            relative_path=$(echo "$file" | sed 's|.*.config/||')
+            # Result
+            target_path="${target}${relative_path}"
+
+            if [[ -d "$target_path" ]]; then
+                echo ":: Directory found"
+            elif [[ ! -d "$target_path" ]]; then
+                echo ":: No directory found"     
+                mkdir -p "$target_path"
+                echo ":: Directory added"
             fi
-            ln -s "$item" "$ln_target"
-            echo ":: Symlinked $item -> $ln_target"
-        done
-    elif [[ -f "$file" ]]; then
-        # If it's a file, create a symlink
-        if [[ -e "$target" || -L "$target" ]]; then
-            echo ":: Removing existing $target"
-            rm -rf "$target"
+
+        elif [[ -f "$file" ]]; then           
+            # Extract relative path (everything after ".config/")
+            relative_path=$(echo "$file" | sed 's|.*.config/||') 
+            # Result
+            target_path="${target}${relative_path}"
+
+            if [[ -f "$target_path" ]]; then
+                echo ":: File found"
+            elif [[ ! -f "$target_path" ]]; then
+                echo ":: No File found"
+                ln -s "$file" "$target_path"
+                echo ":: Symlinked $file -> $target_path"
+            fi
+        else
+            echo "$file is something else"
         fi
-        ln -s "$file" "$target"
-        echo ":: Symlinked $file -> $target"
-    fi
+    done
 done
 echo ":: Symlinks and directories created for .config files."
 
