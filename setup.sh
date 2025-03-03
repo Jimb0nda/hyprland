@@ -39,22 +39,32 @@ echo ":: Dev Projects cloned"
 # Ensure .config directory exists
 mkdir -p ~/.config
 
-# Create symbolic links for .config files
+# Create symbolic links for .config files, copy directories
 echo ":: Creating symlinks for config files..."
 for file in ~/Dev/hyprland/dotfiles/.config/*; do
     filename=$(basename "$file")
     target="$HOME/.config/$filename"
 
-    # Remove existing file or directory before linking
-    if [[ -e "$target" || -L "$target" ]]; then
-        echo ":: Removing existing $target"
-        rm -rf "$target"
+    # Check if it's a directory or a file
+    if [[ -d "$file" ]]; then
+        # If it's a directory, copy it recursively
+        if [[ ! -d "$target" ]]; then
+            echo ":: Copying directory $file to $target"
+            cp -r "$file" "$target"
+        else
+            echo ":: Directory already exists: $target"
+        fi
+    elif [[ -f "$file" ]]; then
+        # If it's a file, create a symlink
+        if [[ -e "$target" || -L "$target" ]]; then
+            echo ":: Removing existing $target"
+            rm -rf "$target"
+        fi
+        ln -s "$file" "$target"
+        echo ":: Symlinked $file -> $target"
     fi
-
-    ln -s "$file" "$target"
-    echo ":: Symlinked $file -> $target"
 done
-echo ":: Symlinks created for .config files."
+echo ":: Symlinks and directories created for .config files."
 
 # Create symbolic link for .bashrc
 if [ -f ~/.bashrc ] || [ -L ~/.bashrc ]; then
