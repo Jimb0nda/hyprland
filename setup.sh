@@ -85,6 +85,14 @@ for files in ~/Dev/hyprland/dotfiles/.config/*; do
 done
 echo ":: Symlinks and directories created for .config files."
 
+# Create symbolic link for .tmux.conf
+if [ -f ~/.tmux.conf ] || [ -L ~/.tmux.conf ]; then
+    echo ":: Removing existing ~/.tmux.conf"
+    rm ~/.tmux.conf
+fi
+ln -s ~/Dev/hyprland/dotfiles/.tmux.conf ~/.tmux.conf
+echo ":: Symlink created for .tmux.conf"
+
 # Create symbolic link for .bashrc
 if [ -f ~/.bashrc ] || [ -L ~/.bashrc ]; then
     echo ":: Removing existing ~/.bashrc"
