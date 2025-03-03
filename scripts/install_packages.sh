@@ -30,6 +30,7 @@ PACMAN_PACKAGES=(
     "polkit-kde-agent"
     "noto-fonts-emoji"
     "python-requests"
+    "networkmanager"
 )
 
 # AUR packages to install via Yay
