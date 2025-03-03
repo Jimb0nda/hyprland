@@ -31,6 +31,10 @@ PACMAN_PACKAGES=(
     "noto-fonts-emoji"
     "python-requests"
     "networkmanager"
+    "pipewire"
+    "wireplumber"
+    "pipewire-pulse"
+    "pipewire-alsa"
 )
 
 # AUR packages to install via Yay
