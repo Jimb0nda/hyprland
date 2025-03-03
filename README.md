@@ -5,6 +5,6 @@
 
 Run following:
 
-systemctl enable/start NetworkManager
-systemctl enable/start Bluetooth
-systemctl enable/start pipewire
+systemctl enable/start NetworkManager /n
+systemctl enable/start Bluetooth /n
+systemctl enable/start pipewire /n
