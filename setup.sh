@@ -44,41 +44,42 @@ cd hyprland
 # Create symbolic links for .config files, copy directories
 echo ":: Creating symlinks for config files..."
 
-process_directory() {
-    local source_dir="$1"
-    local target_dir="$2"
+for file in ~/Dev/hyprland/dotfiles/.config/*; do
+    filename=$(basename "$file")
+    target="$HOME/.config/$filename"
 
-    # Iterate through the items in the directory
-    for item in "$source_dir"/*; do
-        local filename=$(basename "$item")
-        local target="$target_dir/$filename"
-
-        if [[ -d "$item" ]]; then
-            # If it's a directory, recurse into it
-            echo ":: Directory found: $item"
-            if [[ ! -d "$target" ]]; then
-                echo ":: Creating directory: $target"
-                mkdir -p "$target"
-            fi
-            # Recursively process the subdirectory
-            process_directory "$item" "$target"
-        elif [[ -f "$item" ]]; then
-            # If it's a file, create a symlink
-            if [[ -e "$target" || -L "$target" ]]; then
-                echo ":: Removing existing $target"
-                rm -rf "$target"
-            fi
-            ln -s "$item" "$target"
-            echo ":: Symlinked $item -> $target"
+    # Check if it's a directory or a file
+    if [[ -d "$file" ]]; then
+        # If it's a directory, check if the target directory exists
+        if [[ -d "$target" ]]; then
+            # If the directory exists, remove all files in the directory
+            echo ":: Directory exists: $target. Removing files and symlinking from source."
+            rm -rf "$target"/*
+        else
+            # If the directory doesn't exist, create it
+            echo ":: Creating directory: $target"
+            mkdir -p "$target"
         fi
-    done
-}
-
-# Start the process from the root directory
-source_dir=~/Dev/hyprland/dotfiles/.config
-target_dir=$HOME/.config
-
-process_directory "$source_dir" "$target_dir"
+        # Recursively create symlinks for files inside the directory
+        for item in "$file"/*; do
+            ln_target="$target/$(basename "$item")"
+            if [[ -e "$ln_target" || -L "$ln_target" ]]; then
+                echo ":: Removing existing symlink or file at $ln_target"
+                rm -rf "$ln_target"
+            fi
+            ln -s "$item" "$ln_target"
+            echo ":: Symlinked $item -> $ln_target"
+        done
+    elif [[ -f "$file" ]]; then
+        # If it's a file, create a symlink
+        if [[ -e "$target" || -L "$target" ]]; then
+            echo ":: Removing existing $target"
+            rm -rf "$target"
+        fi
+        ln -s "$file" "$target"
+        echo ":: Symlinked $file -> $target"
+    fi
+done
 echo ":: Symlinks and directories created for .config files."
 
 # Create symbolic link for .bashrc
