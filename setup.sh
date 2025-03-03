@@ -43,6 +43,7 @@ cd hyprland
 
 # Create symbolic links for .config files, copy directories
 echo ":: Creating symlinks for config files..."
+# Loop through all files and directories in the source directory
 for file in ~/Dev/hyprland/dotfiles/.config/*; do
     filename=$(basename "$file")
     target="$HOME/.config/$filename"
