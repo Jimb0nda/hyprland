@@ -73,6 +73,13 @@ for files in ~/Dev/hyprland/dotfiles/.config/*; do
 
             if [[ -f "$target_path" ]]; then
                 echo ":: File found"
+                # If it's a file, create a symlink
+                if [[ -e "$target_path" || -L "$target_path" ]]; then
+                    echo ":: Removing existing $target_path"
+                    rm -rf "$target_path"
+                fi
+                ln -s "$file" "$target_target"
+                echo ":: Symlinked $item -> $target"
             elif [[ ! -f "$target_path" ]]; then
                 echo ":: No File found"
                 ln -s "$file" "$target_path"
