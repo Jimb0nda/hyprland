@@ -35,6 +35,7 @@ PACMAN_PACKAGES=(
     "wireplumber"
     "pipewire-pulse"
     "pipewire-alsa"
+    "fprint"
 )
 
 # AUR packages to install via Yay
