@@ -45,7 +45,7 @@ cd hyprland
 echo ":: Creating symlinks for config files..."
 # Loop through all files and directories in the source directory
 
-for files in ~/Dev/hyprland/dotfiles/.config/nvim; do
+for files in ~/Dev/hyprland/dotfiles/.config/*; do
     # Variable to concatenate
     target="$HOME/.config/"
 
