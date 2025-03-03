@@ -45,7 +45,7 @@ cd hyprland
 echo ":: Creating symlinks for config files..."
 # Loop through all files and directories in the source directory
 
-for files in ~/Dev/hyprland/dotfiles/.config/*; do
+for files in ~/Dev/hyprland/dotfiles/.config/nvim; do
     # Variable to concatenate
     target="$HOME/.config/"
 
@@ -65,7 +65,7 @@ for files in ~/Dev/hyprland/dotfiles/.config/*; do
                 echo ":: Directory added"
             fi
 
-        elif [[ -f "$file" ]]; then           
+        elif [[ ! -d "$file" ]]; then           
             # Extract relative path (everything after ".config/")
             relative_path=$(echo "$file" | sed 's|.*.config/||') 
             # Result
@@ -73,20 +73,15 @@ for files in ~/Dev/hyprland/dotfiles/.config/*; do
 
             if [[ -f "$target_path" ]]; then
                 echo ":: File found"
-                # If it's a file, create a symlink
-                if [[ -e "$target_path" || -L "$target_path" ]]; then
-                    echo ":: Removing existing $target_path"
-                    rm -rf "$target_path"
-                fi
-                ln -s "$file" "$target_target"
-                echo ":: Symlinked $item -> $target"
+                echo ":: Removing existing $target_path"
+                rm -rf "$target_path"
+                ln -s "$file" "$target_path"
+                echo ":: Symlinked $item -> $target_path"
             elif [[ ! -f "$target_path" ]]; then
                 echo ":: No File found"
                 ln -s "$file" "$target_path"
                 echo ":: Symlinked $file -> $target_path"
             fi
-        else
-            echo "$file is something else"
         fi
     done
 done
