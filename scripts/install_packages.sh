@@ -47,6 +47,7 @@ YAY_PACKAGES=(
     "wttrbar"
     "lazydocker"
     "lazygit"
+    "steam"
 )
 
 # Check yay is installed
