@@ -38,6 +38,9 @@ echo ":: Dev Projects cloned"
 # Ensure .config directory exists
 mkdir -p ~/.config
 
+cd hyprland
+./install.sh
+
 # Create symbolic links for .config files, copy directories
 echo ":: Creating symlinks for config files..."
 for file in ~/Dev/hyprland/dotfiles/.config/*; do
@@ -75,9 +78,6 @@ echo ":: Symlink created for .bashrc."
 
 # Reload Bash configuration
 source ~/.bashrc
-
-cd hyprland
-./install.sh
 
 echo ":: Setup complete!"
 
