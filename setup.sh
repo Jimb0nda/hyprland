@@ -19,7 +19,6 @@ EOF
 # Check if git is installed
 if ! command -v git &>/dev/null; then
     sudo pacman -S git --noconfirm
-    exit 1
 fi
 
 # Set up directories
