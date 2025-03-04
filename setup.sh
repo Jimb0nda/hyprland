@@ -28,11 +28,13 @@ echo ":: Directories ensured (Downloads, Dev)"
 # Clone repositories
 cd ~/Dev
 [[ -d "hyprland" ]] && rm -rf hyprland
-git clone --depth 1 https://github.com/Jimb0nda/hyprland.git
-echo ":: Hyprland setup cloned"
+git clone --depth 1 git@github.com:Jimb0nda/hyprland.git
 
 [[ -d "Cpp" ]] && rm -rf Cpp
-git clone --depth 1 https://github.com/Jimb0nda/Cpp.git
+git clone --depth 1 git@github.com:Jimb0nda/Cpp.git
+
+[[ -d "ML" ]] && rm -rf ML
+git clone --depth 1 git@github.com:Jimb0nda/ML.git
 echo ":: Dev Projects cloned"
 
 # Ensure .config directory exists
@@ -102,6 +104,16 @@ if [ -f ~/.bashrc ] || [ -L ~/.bashrc ]; then
 fi
 ln -s ~/Dev/hyprland/dotfiles/.bashrc ~/.bashrc
 echo ":: Symlink created for .bashrc."
+
+sudo cp -r /config/login /usr/share/sddm/themes/
+echo ":: Theme folder installed"
+
+if [ -f /lib/sddm/sddm.conf.d/default.conf] || [ -L /lib/sddm/sddm.conf.d/default.conf]; then
+    echo ":: Removing existing theme default.conf"
+    sudo rm /lib/sddm/sddm.conf.d/default.conf
+fi
+sudo ln -s /config/login/default.conf /lib/sddm/sddm.conf.d/default.conf
+echo ":: Symlink of theme file created"
 
 # Reload Bash configuration
 source ~/.bashrc

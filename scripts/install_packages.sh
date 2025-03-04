@@ -36,6 +36,11 @@ PACMAN_PACKAGES=(
     "pipewire-pulse"
     "pipewire-alsa"
     "fprint"
+    "tar"
+    "qt5-quickcontrols2"
+    "qt5-base"
+    "qt5-declarative"
+    "qt5-graphicaleffects"
 )
 
 # AUR packages to install via Yay
@@ -62,4 +67,7 @@ echo ":: Installing AUR packages..."
 _installPackagesYay "${YAY_PACKAGES[@]}"
 
 echo ":: Package installation complete!"
+
+rm -rf ~/.cache/QtProject/
+rm -rf ~/.config/QtProject/
 
