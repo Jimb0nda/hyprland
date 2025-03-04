@@ -115,6 +115,20 @@ fi
 sudo ln -s /home/james/Dev/hyprland/config/login/default.conf /lib/sddm/sddm.conf.d/default.conf
 echo ":: Symlink of theme file created"
 
+if [ -f /etc/pam.d/sddm ] || [ -L /etc/pam.d/sddm ]; then
+    echo ":: Removing existing sddm file"
+    sudo rm /etc/pam.d/sddm 
+fi
+sudo ln -s /home/james/Dev/hyprland/config/fingerprint/sddm /etc/pam.d/sddm
+echo ":: Symlink of sddm file created"
+
+if [ -f /etc/pam.d/system-auth ] || [ -L /etc/pam.d/system-auth ]; then
+    echo ":: Removing existing system-auth file"
+    sudo rm /etc/pam.d/system-auth 
+fi
+sudo ln -s /home/james/Dev/hyprland/config/fingerprint/system-auth /etc/pam.d/system-auth
+echo ":: Symlink of system-auth file created"
+
 # Reload Bash configuration
 source ~/.bashrc
 
