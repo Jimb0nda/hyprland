@@ -105,7 +105,7 @@ fi
 ln -s ~/Dev/hyprland/dotfiles/.bashrc ~/.bashrc
 echo ":: Symlink created for .bashrc."
 
-sudo cp -r /config/login/sugar-candy /usr/share/sddm/themes/
+sudo cp -r ~/Dev/hyprland/config/login/sugar-candy /usr/share/sddm/themes/
 echo ":: Theme folder copied"
 
 if [ -f /lib/sddm/sddm.conf.d/default.conf ] || [ -L /lib/sddm/sddm.conf.d/default.conf ]; then
