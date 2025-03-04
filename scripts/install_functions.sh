@@ -43,6 +43,7 @@ _installPackages() {
         return
     fi
     # Show the packages that will be installed
+    sudo pacman -Sy
     echo "Packages to be installed via pacman: ${toInstall[@]}"
     sudo pacman --noconfirm -S "${toInstall[@]}"
 }
