@@ -63,3 +63,15 @@ if [ -f /lib/sddm/sddm.conf.d/default.conf ] || [ -L /lib/sddm/sddm.conf.d/defau
 fi
 sudo ln -s /home/james/Dev/hyprland/config/login/default.conf /lib/sddm/sddm.conf.d/default.conf
 echo ":: Symlink of theme file created"
+
+if [ -f /etc/pam.d/sddm ] || [ -L /etc/pam.d/sddm ]; then
+    echo ":: Removing existing sddm file"
+    sudo cp /home/james/Dev/hyprland/config/fingerprint/sddm /etc/pam.d/sddm
+fi
+echo ":: Copied sddm file"
+
+if [ -f /etc/pam.d/system-auth ] || [ -L /etc/pam.d/system-auth ]; then
+    echo ":: Removing existing system-auth file"
+    sudo cp /home/james/Dev/hyprland/config/fingerprint/system-auth /etc/pam.d/system-auth
+fi
+echo ":: Copied system-auth file"
