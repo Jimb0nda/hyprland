@@ -31,10 +31,10 @@ cd ~/Dev
 git clone --depth 1 https://github.com/Jimb0nda/hyprland.git
 
 [[ -d "Cpp" ]] && rm -rf Cpp
-git clone --depth 1 git@github.com:Jimb0nda/Cpp.git
+git clone --depth 1 https://github.com/Jimb0nda/Cpp.git
 
 [[ -d "ML" ]] && rm -rf ML
-git clone --depth 1 git@github.com:Jimb0nda/ML.git
+git clone --depth 1 https://github.com/Jimb0nda/ML.git
 echo ":: Dev Projects cloned"
 
 # Ensure .config directory exists
