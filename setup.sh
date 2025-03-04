@@ -112,7 +112,7 @@ if [ -f /lib/sddm/sddm.conf.d/default.conf ] || [ -L /lib/sddm/sddm.conf.d/defau
     echo ":: Removing existing theme default.conf"
     sudo rm /lib/sddm/sddm.conf.d/default.conf
 fi
-sudo ln -s /config/login/default.conf /lib/sddm/sddm.conf.d/default.conf
+sudo ln -s /home/james/Dev/hyprland/config/login/default.conf /lib/sddm/sddm.conf.d/default.conf
 echo ":: Symlink of theme file created"
 
 # Reload Bash configuration
