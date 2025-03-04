@@ -108,7 +108,7 @@ echo ":: Symlink created for .bashrc."
 sudo cp -r /config/login/sugar-candy /usr/share/sddm/themes/
 echo ":: Theme folder copied"
 
-if [ -f /lib/sddm/sddm.conf.d/default.conf] || [ -L /lib/sddm/sddm.conf.d/default.conf ]; then
+if [ -f /lib/sddm/sddm.conf.d/default.conf ] || [ -L /lib/sddm/sddm.conf.d/default.conf ]; then
     echo ":: Removing existing theme default.conf"
     sudo rm /lib/sddm/sddm.conf.d/default.conf
 fi
