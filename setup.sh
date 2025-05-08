@@ -59,7 +59,7 @@ mkdir -p ~/.config
 
 info ":: Entering Hyprland Folder for further install"
 cd hyprland
-./install.sh
+./install.sh && success "Hyprland install script executed."
 
 info ":: Creating symlinks for config files..."
 # Loop through all files and directories in the source directory
@@ -77,7 +77,7 @@ for files in ~/Dev/hyprland/dotfiles/.config/*; do
             target_path="${target}${relative_path}"
 
             if [[ ! -d "$target_path" ]]; then
-                warn ":: No directory found"     
+                warn ":: No directory found for $target_path"     
                 mkdir -p "$target_path"
                 success ":: Directory added $target_path"
             fi
