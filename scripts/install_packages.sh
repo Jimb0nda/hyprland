@@ -60,10 +60,10 @@ _installPackages "${PACMAN_PACKAGES[@]}"
 
 # Check yay is installed
 echo ":: Checking yay is installed"
-_installYay
+#_installYay
 
 echo ":: Installing AUR packages..."
-_installPackagesYay "${YAY_PACKAGES[@]}"
+#_installPackagesYay "${YAY_PACKAGES[@]}"
 
 echo ":: Package installation complete!"
 
