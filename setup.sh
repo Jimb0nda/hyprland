@@ -16,6 +16,7 @@ cat <<"EOF"
 
 EOF
 
+echo ":: Checking Git is installed"
 # Check if git is installed
 if ! command -v git &>/dev/null; then
     sudo pacman -S git --noconfirm
@@ -42,7 +43,7 @@ mkdir -p ~/.config
 
 echo ":: Entering Hyprland Folder for further install"
 cd hyprland
-#./install.sh
+./install.sh
 
 # Reload Bash configuration
 source ~/.bashrc
