@@ -14,6 +14,16 @@ success() { echo -e "${GREEN}${BOLD}✔ $1${RESET}"; }
 warn() { echo -e "${YELLOW}${BOLD}⚠ $1${RESET}"; }
 error() { echo -e "${RED}${BOLD}✖ $1${RESET}"; }
 
+#Create log file for caught errors
+LOGFILE="$HOME/setup.log"
+ERROR_OCCURRED=0
+
+# Log all output to terminal and log file
+exec > >(tee -a "$LOGFILE") 2>&1
+
+# Catch errors and set error flag
+trap 'echo -e "\n${RED}${BOLD}✖ Error on line $LINENO. Check $LOGFILE for details.${RESET}"; ERROR_OCCURRED=1' ERR
+
 clear
 echo -e "${GREEN}"
 cat <<"EOF"
