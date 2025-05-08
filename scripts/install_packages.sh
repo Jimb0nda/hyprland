@@ -55,13 +55,13 @@ YAY_PACKAGES=(
     "steam"
 )
 
-# Check yay is installed
-echo ":: Checking yay is installed"
-_installYay
-
 # Install required packages
 echo ":: Installing system packages..."
 _installPackages "${PACMAN_PACKAGES[@]}"
+
+# Check yay is installed
+echo ":: Checking yay is installed"
+_installYay
 
 echo ":: Installing AUR packages..."
 _installPackagesYay "${YAY_PACKAGES[@]}"
