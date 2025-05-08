@@ -3,10 +3,13 @@
 
 ![alt text](2024-11-05-184954_hyprshot.png)
 
-Run following:
+For installation, run:
+bash <(curl -s https://raw.githubusercontent.com/mylinuxforwork/dotfiles/main/setup-arch.sh)
+
+Run following on fresh install:
 
 systemctl enable/start NetworkManager
-
 systemctl enable/start Bluetooth
 
+To set up fingerprint scanner:
 fprint-enroll
