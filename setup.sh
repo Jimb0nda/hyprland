@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo -v
 
 # Set up colors
 # Color codes
