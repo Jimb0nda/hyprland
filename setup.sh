@@ -40,8 +40,9 @@ echo ":: Dev Projects cloned"
 # Ensure .config directory exists
 mkdir -p ~/.config
 
+echo ":: Entering Hyprland Folder for further install"
 cd hyprland
-./install.sh
+#./install.sh
 
 # Reload Bash configuration
 source ~/.bashrc
