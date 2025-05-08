@@ -48,8 +48,8 @@ else
 fi
 
 # Set up directories
-mkdir -p ~/Downloads ~/Dev ~/Documents
-success ":: Directories added (Downloads, Dev, Documents)"
+mkdir -p ~/Downloads ~/Dev ~/Documents ~/Pictures
+success ":: Directories added (Downloads, Dev, Documents, Pictures)"
 
 # Clone repositories
 info ":: Cloning Dev Projects"
