@@ -51,7 +51,7 @@ YAY_PACKAGES=(
     "wttrbar"
     "lazydocker"
     "lazygit"
-    "steam"
+    "hyprshot"
 )
 
 # Install required packages
