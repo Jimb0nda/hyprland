@@ -67,6 +67,7 @@ success ":: Dev Projects cloned"
 # Ensure .config directory exists
 mkdir -p ~/.config
 
+info ":: Replacing pacman.conf file"
 if [ -f /etc/pacman.conf ] || [ -L /etc/pacman.conf ]; then
     warn ":: Removing existing /etc/pacman.conf"
     sudo rm -f /etc/pacman.conf
