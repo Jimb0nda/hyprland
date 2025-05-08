@@ -9,8 +9,12 @@ bash <(curl -s https://raw.githubusercontent.com/Jimb0nda/hyprland/main/setup.sh
 ```
 
 Run following on fresh install:<br/>
-systemctl enable/start NetworkManager<br/>
-systemctl enable/start Bluetooth<br/>
+```shell
+systemctl enable/start NetworkManager
+systemctl enable/start Bluetooth
+```
 
 To set up fingerprint scanner:<br/>
-fprint-enroll<br/>
+```shell
+fprint-enroll
+```
