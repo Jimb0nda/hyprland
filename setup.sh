@@ -144,3 +144,11 @@ source ~/.bashrc
 
 success ":: Setup complete!"
 
+info "Rebooting in 5 seconds..."
+
+for i in {5..1}; do
+    echo -ne "${YELLOW}${BOLD}Rebooting in $i...${RESET} \r"
+    sleep 1
+done
+
+sudo reboot
