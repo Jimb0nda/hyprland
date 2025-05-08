@@ -17,7 +17,6 @@ PACMAN_PACKAGES=(
     "pavucontrol"
     "bluez-utils"
     "blueman"
-    "wlogout"
     "yazi"
     "ffmpegthumbnailer"
     "fd"
