@@ -154,11 +154,15 @@ source ~/.bashrc
 
 success ":: Setup complete!"
 
-info "Rebooting in 5 seconds..."
-
-for i in {5..1}; do
-    echo -ne "${YELLOW}${BOLD}Rebooting in $i...${RESET} \r"
-    sleep 1
-done
-
-sudo reboot
+if [ "$ERROR_OCCURRED" -eq 1 ]; then
+    error "Errors were detected during setup. Please check the log file:"
+    echo -e "${YELLOW}${BOLD}$LOGFILE${RESET}"
+    exit 1
+else
+    info "No errors detected. Rebooting in 5 seconds..."
+    for i in {5..1}; do
+        echo -ne "${YELLOW}${BOLD}Rebooting in $i seconds...${RESET} \r"
+        sleep 1
+    done
+    sudo reboot
+fi
