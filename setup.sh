@@ -69,6 +69,14 @@ mkdir -p ~/.config
 
 info ":: Entering Hyprland Folder for further install"
 cd hyprland
+
+if [ -f /etc/pacman.conf ] || [ -L /etc/pacman.conf ]; then
+    warn ":: Removing existing /etc/pacman.conf"
+    sudo rm -f /etc/pacman.conf
+fi
+sudo cp /home/james/Dev/hyprland/config/pacman.conf /etc/pacman.conf
+success ":: Copied new pacman.conf to /etc/pacman.conf"
+
 source install.sh && success "Hyprland install script executed."
 
 info ":: Creating symlinks for config files..."
