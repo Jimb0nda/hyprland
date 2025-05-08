@@ -69,7 +69,7 @@ mkdir -p ~/.config
 
 info ":: Entering Hyprland Folder for further install"
 cd hyprland
-./install.sh && success "Hyprland install script executed."
+source ./install.sh && success "Hyprland install script executed."
 
 info ":: Creating symlinks for config files..."
 # Loop through all files and directories in the source directory
