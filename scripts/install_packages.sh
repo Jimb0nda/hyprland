@@ -52,6 +52,7 @@ YAY_PACKAGES=(
     "lazydocker"
     "lazygit"
     "hyprshot"
+    "steam"
 )
 
 # Install required packages
