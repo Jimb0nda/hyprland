@@ -90,7 +90,7 @@ ssh-add ~/.ssh/id_ed25519
 success "SSH key added to SSH agent."
 
 # Show public key for GitHub
-info "Your public SSH key (add this to GitHub):"
+info "Your public SSH key:"
 echo -e "${YELLOW}"
 cat ~/.ssh/id_ed25519.pub
 echo -e "${RESET}"
