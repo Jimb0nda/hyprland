@@ -226,6 +226,17 @@ sudo systemctl enable NetworkManager
 sudo systemctl enable bluetooth
 success ":: NetworkManager and Bluetooth services enabled."
 
+# Fingerprint configuration
+read -rp "$(echo -e ${CYAN}${BOLD}Do you want to enroll a fingerprint now? [Y/n]: ${RESET})" ENROLL_FP
+ENROLL_FP=${ENROLL_FP:-Y}  # Default to Y if empty
+
+if [[ "$ENROLL_FP" =~ ^[Yy]$ ]]; then
+    info "Starting fingerprint enrollment..."
+    fprintd-enroll
+    success "Fingerprint enrollment completed (if scanner available)."
+else
+    info "Skipped fingerprint enrollment."
+fi
 
 success ":: Setup complete!"
 
