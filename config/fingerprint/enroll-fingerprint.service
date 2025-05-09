@@ -8,7 +8,7 @@ Type=oneshot
 ExecStart=/usr/bin/kitty -e /home/james/Dev/hyprland/scripts/enroll_fingerprint.sh
 RemainAfterExit=false
 User=james
-Environment=DISPLAY=:0
+Environment=DISPLAY=:1
 Environment=XAUTHORITY=/home/james/.Xauthority
 
 [Install]
