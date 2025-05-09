@@ -96,11 +96,15 @@ cat ~/.ssh/id_ed25519.pub
 echo -e "${RESET}"
 
 # Open GitHub SSH key page
+info "Opening GitHub SSH key page..."
 if command -v xdg-open &> /dev/null; then
     xdg-open "https://github.com/settings/ssh/new"
 elif command -v open &> /dev/null; then
     open "https://github.com/settings/ssh/new"
 fi
+
+# Wait for user to confirm
+read -rp "$(echo -e ${YELLOW}${BOLD}Press ENTER after adding the SSH key to GitHub...${RESET})"
 
 # Test SSH connection
 info "Testing SSH connection to GitHub..."
