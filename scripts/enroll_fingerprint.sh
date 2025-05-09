@@ -10,8 +10,6 @@ GREEN='\033[0;32m'
 info() { echo -e "${CYAN}${BOLD}:: $1${RESET}"; }
 success() { echo -e "${GREEN}${BOLD}✔ $1${RESET}"; }
 
-exec kitty
-
 read -rp "$(echo -e ${CYAN}${BOLD}Do you want to enroll a fingerprint now? [Y/n]: ${RESET})" ENROLL_FP
 ENROLL_FP=${ENROLL_FP:-Y}  # Default to Y
 
