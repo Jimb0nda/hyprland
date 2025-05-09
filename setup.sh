@@ -51,6 +51,35 @@ fi
 mkdir -p ~/Downloads ~/Dev ~/Documents ~/Pictures
 success ":: Directories added (Downloads, Dev, Documents, Pictures)"
 
+# Clone repositories
+info ":: Cloning Hyprland Project"
+cd ~/Dev
+[[ -d "hyprland" ]] && rm -rf hyprland
+git clone --depth 1 https://github.com/Jimb0nda/hyprland.git
+success ":: Hyprland Project cloned"
+
+# Ensure .config directory exists
+mkdir -p ~/.config
+
+# Handle pacman.conf
+if [ -f /etc/pacman.conf ]; then
+    warn ":: Backing up existing pacman.conf to pacman.conf.backup"
+    sudo cp /etc/pacman.conf /etc/pacman.conf.backup
+fi
+
+if [ -f /home/james/Dev/hyprland/config/pacman.conf ]; then
+    warn ":: Replacing pacman.conf with custom version"
+    sudo cp /home/james/Dev/hyprland/config/pacman.conf /etc/pacman.conf
+    sudo chmod 644 /etc/pacman.conf
+    success ":: Replaced pacman.conf successfully"
+else
+    error ":: Custom pacman.conf not found, skipping replacement"
+fi
+
+info ":: Entering Hyprland Folder for further install"
+cd hyprland
+source install.sh && success "Hyprland install script executed."
+
 info "Setting up GitHub SSH authentication..."
 # Get or prompt for Git name
 GIT_NAME=$(git config --global user.name)
@@ -120,8 +149,8 @@ fi
 info ":: Cloning Dev Projects"
 cd ~/Dev
 
-[[ -d "hyprland" ]] && rm -rf hyprland
-git clone --depth 1 git@github.com:Jimb0nda/hyprland.git
+[[ -d "csharp" ]] && rm -rf csharp
+git clone --depth 1 git@github.com:Jimb0nda/csharp.git
 
 [[ -d "Cpp" ]] && rm -rf Cpp
 git clone --depth 1 git@github.com:Jimb0nda/Cpp.git
@@ -129,29 +158,10 @@ git clone --depth 1 git@github.com:Jimb0nda/Cpp.git
 [[ -d "ML" ]] && rm -rf ML
 git clone --depth 1 git@github.com:Jimb0nda/ML.git
 
-success ":: Dev Projects cloned"
-
-# Ensure .config directory exists
-mkdir -p ~/.config
-
-# Handle pacman.conf
-if [ -f /etc/pacman.conf ]; then
-    warn ":: Backing up existing pacman.conf to pacman.conf.backup"
-    sudo cp /etc/pacman.conf /etc/pacman.conf.backup
-fi
-
-if [ -f /home/james/Dev/hyprland/config/pacman.conf ]; then
-    warn ":: Replacing pacman.conf with custom version"
-    sudo cp /home/james/Dev/hyprland/config/pacman.conf /etc/pacman.conf
-    sudo chmod 644 /etc/pacman.conf
-    success ":: Replaced pacman.conf successfully"
-else
-    error ":: Custom pacman.conf not found, skipping replacement"
-fi
-
-info ":: Entering Hyprland Folder for further install"
 cd hyprland
-source install.sh && success "Hyprland install script executed."
+git remote set-url origin git@github.com:Jimb0nda/hyprland.git
+cd ..
+success ":: Dev Projects cloned"
 
 info ":: Creating symlinks for config files..."
 # Loop through all files and directories in the source directory
