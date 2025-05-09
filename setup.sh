@@ -240,7 +240,7 @@ success ":: Dev Projects cloned and remote URLs set to SSH"
 info "Setting up one-time fingerprint enrollment service..."
 chmod +x ~/Dev/hyprland/scripts/enroll_fingerprint.sh
 
-sudo cp ~/Dev/hyprland/config/enroll-fingerprint.service /etc/systemd/system/enroll-fingerprint.service
+sudo cp ~/Dev/hyprland/config/fingerprint/enroll-fingerprint.service /etc/systemd/system/enroll-fingerprint.service
 sudo systemctl enable enroll-fingerprint.service
 success "Fingerprint enrollment service enabled for next boot."
 
