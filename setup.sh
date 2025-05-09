@@ -157,24 +157,33 @@ if [ ! -f ~/.ssh/id_ed25519 ]; then
     info "Setting up GitHub SSH authentication..."
 
     # Get or prompt for Git name
-    GIT_NAME=$(git config --global user.name)
+    GIT_NAME=$(git config --global user.name || true)
     if [ -z "$GIT_NAME" ]; then
         read -rp "$(echo -e ${YELLOW}${BOLD}Git name not found. Enter your full name: ${RESET})" GIT_NAME
-        git config --global user.name "$GIT_NAME"
-        success "Git name set to $GIT_NAME"
+        if [ -n "$GIT_NAME" ]; then
+            git config --global user.name "$GIT_NAME"
+            success "Git name set to $GIT_NAME"
+        else
+            warn "No Git name provided. Skipping Git setup."
+        fi
     else
         info "Git name detected: $GIT_NAME"
     fi
-
+    
     # Get or prompt for Git email
-    GIT_EMAIL=$(git config --global user.email)
+    GIT_EMAIL=$(git config --global user.email || true)
     if [ -z "$GIT_EMAIL" ]; then
         read -rp "$(echo -e ${YELLOW}${BOLD}Git email not found. Enter your GitHub email: ${RESET})" GIT_EMAIL
-        git config --global user.email "$GIT_EMAIL"
-        success "Git email set to $GIT_EMAIL"
+        if [ -n "$GIT_EMAIL" ]; then
+            git config --global user.email "$GIT_EMAIL"
+            success "Git email set to $GIT_EMAIL"
+        else
+            warn "No Git email provided. Skipping Git setup."
+        fi
     else
         info "Git email detected: $GIT_EMAIL"
     fi
+
 
     # Ensure ~/.ssh exists
     mkdir -p ~/.ssh
