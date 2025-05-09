@@ -121,19 +121,19 @@ fi
 ln -s ~/Dev/hyprland/dotfiles/.bashrc ~/.bashrc
 success ":: Symlink created for .bashrc."
 
-sudo cp -r /home/james/Dev/hyprland/config/login/sugar-candy /usr/share/sddm/themes/
+sudo cp -r ~/Dev/hyprland/config/login/sugar-candy /usr/share/sddm/themes/
 info ":: Theme folder copied"
 
 if [ -f /lib/sddm/sddm.conf.d/default.conf ] || [ -L /lib/sddm/sddm.conf.d/default.conf ]; then
     warn ":: Removing existing theme default.conf"
     sudo rm /lib/sddm/sddm.conf.d/default.conf
 fi
-sudo ln -s /home/james/Dev/hyprland/config/login/default.conf /lib/sddm/sddm.conf.d/default.conf
+sudo ln -s ~/Dev/hyprland/config/login/default.conf /lib/sddm/sddm.conf.d/default.conf
 success ":: Symlink of theme file created"
 
 if [ -f /etc/pam.d/sddm ] || [ -L /etc/pam.d/sddm ]; then
     warn ":: Removing existing sddm file"
-    sudo cp /home/james/Dev/hyprland/config/fingerprint/sddm /etc/pam.d/sddm
+    sudo cp ~/Dev/hyprland/config/fingerprint/sddm /etc/pam.d/sddm
 fi
 success ":: Copied sddm file"
 
