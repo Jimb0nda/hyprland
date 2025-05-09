@@ -150,7 +150,13 @@ fi
 success ":: Copied system-auth file"
 
 # Reload Bash configuration
+info "Sourcing bashrc"
 source ~/.bashrc
+
+info "Enabling system services to start on boot..."
+sudo systemctl enable NetworkManager
+sudo systemctl enable bluetooth
+success "NetworkManager and Bluetooth services enabled."
 
 success ":: Setup complete!"
 
