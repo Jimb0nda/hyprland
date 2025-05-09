@@ -51,18 +51,82 @@ fi
 mkdir -p ~/Downloads ~/Dev ~/Documents ~/Pictures
 success ":: Directories added (Downloads, Dev, Documents, Pictures)"
 
+info "Setting up GitHub SSH authentication..."
+# Get or prompt for Git name
+GIT_NAME=$(git config --global user.name)
+if [ -z "$GIT_NAME" ]; then
+    read -rp "$(echo -e ${YELLOW}${BOLD}Git name not found. Enter your full name: ${RESET})" GIT_NAME
+    git config --global user.name "$GIT_NAME"
+    success "Git name set to $GIT_NAME"
+else
+    info "Git name detected: $GIT_NAME"
+fi
+
+# Get or prompt for Git email
+GIT_EMAIL=$(git config --global user.email)
+if [ -z "$GIT_EMAIL" ]; then
+    read -rp "$(echo -e ${YELLOW}${BOLD}Git email not found. Enter your GitHub email: ${RESET})" GIT_EMAIL
+    git config --global user.email "$GIT_EMAIL"
+    success "Git email set to $GIT_EMAIL"
+else
+    info "Git email detected: $GIT_EMAIL"
+fi
+
+# Ensure ~/.ssh exists
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+
+# Generate SSH key if not present
+if [ ! -f ~/.ssh/id_ed25519 ]; then
+    ssh-keygen -t ed25519 -C "$GIT_EMAIL" -f ~/.ssh/id_ed25519 -N ""
+    success "SSH key generated for $GIT_EMAIL"
+else
+    info "SSH key already exists. Skipping generation."
+fi
+
+# Start SSH agent and add key
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+success "SSH key added to SSH agent."
+
+# Show public key for GitHub
+info "Your public SSH key (add this to GitHub):"
+echo -e "${YELLOW}"
+cat ~/.ssh/id_ed25519.pub
+echo -e "${RESET}"
+
+# Open GitHub SSH key page
+if command -v xdg-open &> /dev/null; then
+    xdg-open "https://github.com/settings/ssh/new"
+elif command -v open &> /dev/null; then
+    open "https://github.com/settings/ssh/new"
+fi
+
+# Test SSH connection
+info "Testing SSH connection to GitHub..."
+if ssh -o StrictHostKeyChecking=no -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+    success "SSH connection to GitHub confirmed!"
+else
+    error "SSH authentication to GitHub failed. Add your key to GitHub:"
+    echo -e "${YELLOW}https://github.com/settings/ssh/new${RESET}"
+    ERROR_OCCURRED=1
+fi
+
 # Clone repositories
 info ":: Cloning Dev Projects"
 cd ~/Dev
+
 [[ -d "hyprland" ]] && rm -rf hyprland
-git clone --depth 1 https://github.com/Jimb0nda/hyprland.git
+git clone --depth 1 git@github.com:Jimb0nda/hyprland.git
 
 [[ -d "Cpp" ]] && rm -rf Cpp
-git clone --depth 1 https://github.com/Jimb0nda/Cpp.git
+git clone --depth 1 git@github.com:Jimb0nda/Cpp.git
 
 [[ -d "ML" ]] && rm -rf ML
-git clone --depth 1 https://github.com/Jimb0nda/ML.git
+git clone --depth 1 git@github.com:Jimb0nda/ML.git
+
 success ":: Dev Projects cloned"
+
 
 # Ensure .config directory exists
 mkdir -p ~/.config
