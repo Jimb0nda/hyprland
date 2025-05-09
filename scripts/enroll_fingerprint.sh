@@ -22,4 +22,5 @@ else
 fi
 
 # Disable and remove the service after running
-sudo systemctl --user disable enroll-fingerprint.service
+systemctl --user disable enroll-fingerprint.service
+rm -f ~/.config/systemd/user/enroll-fingerprint.service
