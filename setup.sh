@@ -236,6 +236,13 @@ git clone --depth 1 git@github.com:Jimb0nda/Cpp.git
 git clone --depth 1 git@github.com:Jimb0nda/ML.git
 success ":: Dev Projects cloned and remote URLs set to SSH"
 
+# Setting up fingerprint service for enrollment after reboot
+chmod +x ~/Dev/hyprland/scripts/enroll_fingerprint.sh
+
+sudo cp ~/Dev/hyprland/config/enroll-fingerprint.service /etc/systemd/system/enroll-fingerprint.service
+sudo systemctl enable enroll-fingerprint.service
+
+
 success ":: Setup complete!"
 
 if [ "$ERROR_OCCURRED" -eq 1 ]; then
