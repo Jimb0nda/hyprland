@@ -43,7 +43,6 @@ PACMAN_PACKAGES=(
     "dotnet-runtime"
     "dotnet-sdk"
     "cmake"
-    "steam"
 )
 
 # AUR packages to install via Yay
