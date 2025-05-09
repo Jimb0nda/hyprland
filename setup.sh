@@ -61,21 +61,6 @@ success ":: Hyprland Project cloned"
 # Ensure .config directory exists
 mkdir -p ~/.config
 
-# Handle pacman.conf
-if [ -f /etc/pacman.conf ]; then
-    warn ":: Backing up existing pacman.conf to pacman.conf.backup"
-    sudo cp /etc/pacman.conf /etc/pacman.conf.backup
-fi
-
-if [ -f /home/james/Dev/hyprland/config/pacman.conf ]; then
-    warn ":: Replacing pacman.conf with custom version"
-    sudo cp /home/james/Dev/hyprland/config/pacman.conf /etc/pacman.conf
-    sudo chmod 644 /etc/pacman.conf
-    success ":: Replaced pacman.conf successfully"
-else
-    error ":: Custom pacman.conf not found, skipping replacement"
-fi
-
 info ":: Entering Hyprland Folder for further install"
 cd hyprland
 source install.sh && success "Hyprland install script executed."
