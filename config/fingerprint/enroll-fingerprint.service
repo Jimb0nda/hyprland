@@ -1,14 +1,10 @@
 [Unit]
 Description=One-time fingerprint enrollment prompt
 After=graphical.target
-Requires=graphical.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/kitty --hold -e ~/Dev/hyprland/scripts/enroll_fingerprint.sh
-User=james
-Environment=DISPLAY=:0
-Environment=XAUTHORITY=/home/james/.Xauthority
+ExecStart=/usr/bin/kitty --hold -e home/jim/Dev/hyprland/scripts/enroll_fingerprint.sh
 
 [Install]
 WantedBy=default.target
