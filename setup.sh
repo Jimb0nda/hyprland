@@ -139,7 +139,7 @@ success ":: Copied sddm file"
 
 if [ -f /etc/pam.d/system-auth ] || [ -L /etc/pam.d/system-auth ]; then
     warn ":: Removing existing system-auth file"
-    sudo cp /home/james/Dev/hyprland/config/fingerprint/system-auth /etc/pam.d/system-auth
+    sudo cp ~/Dev/hyprland/config/fingerprint/system-auth /etc/pam.d/system-auth
 fi
 success ":: Copied system-auth file"
 
