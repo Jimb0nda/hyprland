@@ -237,6 +237,7 @@ git clone --depth 1 git@github.com:Jimb0nda/ML.git
 success ":: Dev Projects cloned and remote URLs set to SSH"
 
 # Setting up fingerprint service for enrollment after reboot
+info ":: Setting up fingerprint enrollment script for one time run after reboot"
 chmod +x ~/Dev/hyprland/scripts/enroll_fingerprint.sh
 
 sudo cp ~/Dev/hyprland/config/enroll-fingerprint.service /etc/systemd/system/enroll-fingerprint.service
