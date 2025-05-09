@@ -40,6 +40,9 @@ PACMAN_PACKAGES=(
     "qt5-base"
     "qt5-declarative"
     "qt5-graphicaleffects"
+    "dotnet-runtime"
+    "dotnet-sdk"
+    "cmake"
 )
 
 # AUR packages to install via Yay
