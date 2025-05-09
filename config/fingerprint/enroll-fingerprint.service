@@ -5,10 +5,9 @@ Requires=graphical.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/kitty -e /home/james/Dev/hyprland/scripts/enroll_fingerprint.sh
-RemainAfterExit=false
+ExecStart=/usr/bin/kitty --hold -e /home/james/Dev/hyprland/scripts/enroll_fingerprint.sh
 User=james
-Environment=DISPLAY=:1
+Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/james/.Xauthority
 
 [Install]
