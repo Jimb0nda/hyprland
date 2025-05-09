@@ -4,7 +4,7 @@ After=graphical.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/kitty --hold -e home/jim/Dev/hyprland/scripts/enroll_fingerprint.sh
+ExecStart=/usr/bin/kitty --hold -e /home/jim/Dev/hyprland/scripts/enroll_fingerprint.sh
 
 [Install]
 WantedBy=default.target
