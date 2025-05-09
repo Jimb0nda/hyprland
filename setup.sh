@@ -233,7 +233,7 @@ ENROLL_FP=${ENROLL_FP:-Y}  # Default to Y if empty
 if [[ "$ENROLL_FP" =~ ^[Yy]$ ]]; then
     info "Starting fingerprint enrollment..."
     fprintd-enroll
-    success "Fingerprint enrollment completed (if scanner available)."
+    success "Fingerprint enrollment completed."
 else
     info "Skipped fingerprint enrollment."
 fi
