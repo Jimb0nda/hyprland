@@ -247,6 +247,7 @@ success ":: Dev Projects cloned and remote URLs set to SSH"
 
 # Setting up fingerprint service for enrollment after reboot
 info "Setting up one-time fingerprint enrollment autostart..."
+chmod +x ~/Dev/hyprland/scripts/enroll_fingerprint.sh
 mkdir -p ~/.config/autostart
 cp ~/Dev/hyprland/config/fingerprint/enroll-fingerprint.desktop ~/.config/autostart/enroll-fingerprint.desktop
 success "Fingerprint enrollment will prompt at next login."
