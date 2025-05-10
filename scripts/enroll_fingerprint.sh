@@ -21,6 +21,6 @@ else
     info "Skipped fingerprint enrollment."
 fi
 
-# Disable and remove the service after running
-systemctl --user disable enroll-fingerprint.service
-rm -f ~/.config/systemd/user/enroll-fingerprint.service
+# Remove autostart entry to make this one-time
+rm -f ~/.config/autostart/enroll-fingerprint.desktop
+
