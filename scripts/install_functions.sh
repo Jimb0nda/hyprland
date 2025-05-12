@@ -1,19 +1,28 @@
 #!/bin/bash
+set -e
+
 
 # Install Yay if not found
 _installYay() {
     if ! command -v yay &>/dev/null; then
-        echo "yay not found! Installing..."
+        warn "yay not found! Installing..."
         git clone https://aur.archlinux.org/yay-git.git ~/yay-git
         cd ~/yay-git
         makepkg -si --noconfirm
         cd ~
         rm -rf ~/yay-git
-        echo "yay installed successfully."
+
+        if command -v yay &>/dev/null; then
+            success "yay installed successfully."
+        else
+            error "ERROR: yay installation failed!"
+            return 1  # triggers trap
+        fi
     else
-        echo "yay is already installed."
+        info "yay is already installed."
     fi
 }
+
 
 # Check if package is installed
 _isInstalled() {
@@ -33,18 +42,18 @@ _installPackages() {
     for pkg; do
         # Debugging output to check if the package is already installed
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
-            echo "${pkg} is already installed. Skipping.";
+            info "${pkg} is already installed. Skipping.";
             continue
         fi
         toInstall+=("${pkg}")
     done
     if [[ ${#toInstall[@]} -eq 0 ]]; then
-        echo "All pacman packages are already installed."
+        info "All pacman packages are already installed."
         return
     fi
     # Show the packages that will be installed
     sudo pacman -Syu
-    echo "Packages to be installed via pacman: ${toInstall[@]}"
+    info "Packages to be installed via pacman: ${toInstall[@]}"
     sudo pacman --noconfirm -S "${toInstall[@]}"
 }
 
@@ -52,18 +61,18 @@ _installPackagesYay() {
     toInstall=();
     for pkg; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
-            echo ":: ${pkg} is already installed.";
+            info ":: ${pkg} is already installed. Skipping";
             continue;
         fi;
         toInstall+=("${pkg}");
     done;
 
     if [[ "${toInstall[@]}" == "" ]] ; then
-        # echo "All packages are already installed.";
+        info "All packages are already installed.";
         return;
     fi;
 
-    # printf "AUR packags not installed:\n%s\n" "${toInstall[@]}";
+    info "AUR packages to be installed" "${toInstall[@]}";
     yay --noconfirm -S "${toInstall[@]}";
 }
 
