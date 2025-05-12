@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=kitty --hold -e /home/james/Dev/hyprland/scripts/enroll_fingerprint.sh
+Exec=kitty --hold -e /home/james/dev/hyprland/scripts/enroll_fingerprint.sh
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
