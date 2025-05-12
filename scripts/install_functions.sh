@@ -61,7 +61,7 @@ _installPackagesYay() {
     toInstall=();
     for pkg; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
-            info ":: ${pkg} is already installed. Skipping";
+            info "${pkg} is already installed. Skipping";
             continue;
         fi;
         toInstall+=("${pkg}");

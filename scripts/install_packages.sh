@@ -60,17 +60,17 @@ YAY_PACKAGES=(
 )
 
 # Install required packages
-info ":: Installing system packages..."
+info "Installing system packages..."
 _installPackages "${PACMAN_PACKAGES[@]}"
 
 # Check yay is installed
-info ":: Checking yay is installed"
+info "Checking yay is installed"
 _installYay
 
-info ":: Installing AUR packages..."
+info "Installing AUR packages..."
 _installPackagesYay "${YAY_PACKAGES[@]}"
 
-success ":: Package installation complete!"
+success "Package installation complete!"
 
 rm -rf ~/.cache/QtProject || warn "Could not remove ~/.cache/QtProject"
 rm -rf ~/.config/QtProject || warn "Could not remove ~/.config/QtProject"
