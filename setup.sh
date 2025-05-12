@@ -266,6 +266,10 @@ git clone --depth 1 git@github.com:Jimb0nda/Cpp.git
 git clone --depth 1 git@github.com:Jimb0nda/ML.git
 success "Dev Projects cloned and remote URLs set to SSH"
 
+info "Cloning Catppuccin for tmux"
+mkdir -p ~/.config/tmux/plugins/catppuccin
+git clone -b v2.1.3 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+
 # Setting up fingerprint service for enrollment after reboot
 info "Setting up one-time fingerprint enrollment autostart..."
 chmod +x ~/Dev/hyprland/scripts/enroll_fingerprint.sh
