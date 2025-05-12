@@ -69,12 +69,12 @@ else
 fi
 
 # Set up directories
-mkdir -p ~/Downloads ~/Dev ~/Documents ~/Pictures
+mkdir -p ~/downloads ~/dev ~/documents ~/pictures
 success "Directories added (Downloads, Dev, Documents, Pictures)"
 
 # Clone repositories
 info "Cloning Hyprland Project"
-cd ~/Dev
+cd ~/dev
 [[ -d "hyprland" ]] && rm -rf hyprland
 git clone --depth 1 https://github.com/Jimb0nda/hyprland.git
 success "Hyprland Project cloned"
@@ -89,7 +89,7 @@ source install.sh && success "Hyprland install script executed."
 info "Creating symlinks for config files..."
 # Loop through all files and directories in the source directory
 
-for files in ~/Dev/hyprland/dotfiles/.config/*; do
+for files in ~/dev/hyprland/dotfiles/.config/*; do
     # Variable to concatenate
     target="$HOME/.config/"
 
@@ -131,7 +131,7 @@ if [ -f ~/.tmux.conf ] || [ -L ~/.tmux.conf ]; then
     warn "Removing existing ~/.tmux.conf"
     rm ~/.tmux.conf
 fi
-ln -s ~/Dev/hyprland/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dev/hyprland/dotfiles/.tmux.conf ~/.tmux.conf
 success "Symlink created for .tmux.conf"
 
 # Create symbolic link for .bashrc
@@ -139,28 +139,28 @@ if [ -f ~/.bashrc ] || [ -L ~/.bashrc ]; then
     warn "Removing existing ~/.bashrc"
     rm ~/.bashrc
 fi
-ln -s ~/Dev/hyprland/dotfiles/.bashrc ~/.bashrc
+ln -s ~/dev/hyprland/dotfiles/.bashrc ~/.bashrc
 success "Symlink created for .bashrc."
 
-sudo cp -r ~/Dev/hyprland/config/login/sugar-candy /usr/share/sddm/themes/
+sudo cp -r ~/dev/hyprland/config/login/sugar-candy /usr/share/sddm/themes/
 info "Theme folder copied"
 
 if [ -f /lib/sddm/sddm.conf.d/default.conf ] || [ -L /lib/sddm/sddm.conf.d/default.conf ]; then
     warn "Removing existing theme default.conf"
     sudo rm /lib/sddm/sddm.conf.d/default.conf
 fi
-sudo ln -s ~/Dev/hyprland/config/login/default.conf /lib/sddm/sddm.conf.d/default.conf
+sudo ln -s ~/dev/hyprland/config/login/default.conf /lib/sddm/sddm.conf.d/default.conf
 success "Symlink of theme file created"
 
 if [ -f /etc/pam.d/sddm ] || [ -L /etc/pam.d/sddm ]; then
     warn "Removing existing sddm file"
-    sudo cp ~/Dev/hyprland/config/fingerprint/sddm /etc/pam.d/sddm
+    sudo cp ~/dev/hyprland/config/fingerprint/sddm /etc/pam.d/sddm
 fi
 success ":: Copied sddm file"
 
 if [ -f /etc/pam.d/system-auth ] || [ -L /etc/pam.d/system-auth ]; then
     warn "Removing existing system-auth file"
-    sudo cp ~/Dev/hyprland/config/fingerprint/system-auth /etc/pam.d/system-auth
+    sudo cp ~/dev/hyprland/config/fingerprint/system-auth /etc/pam.d/system-auth
 fi
 success "Copied system-auth file"
 
@@ -251,7 +251,7 @@ fi
 
 
 info "Cloning Dev Projects"
-cd ~/Dev
+cd ~/dev
 cd hyprland
 git remote set-url origin git@github.com:Jimb0nda/hyprland.git
 cd ..
@@ -259,10 +259,10 @@ cd ..
 [[ -d "csharp" ]] && rm -rf csharp
 git clone --depth 1 git@github.com:Jimb0nda/csharp.git
 # Cpp
-[[ -d "Cpp" ]] && rm -rf Cpp
+[[ -d "cpp" ]] && rm -rf Cpp
 git clone --depth 1 git@github.com:Jimb0nda/Cpp.git
 # ML
-[[ -d "ML" ]] && rm -rf ML
+[[ -d "ml" ]] && rm -rf ML
 git clone --depth 1 git@github.com:Jimb0nda/ML.git
 success "Dev Projects cloned and remote URLs set to SSH"
 
@@ -272,9 +272,9 @@ git clone -b v2.1.3 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugin
 
 # Setting up fingerprint service for enrollment after reboot
 info "Setting up one-time fingerprint enrollment autostart..."
-chmod +x ~/Dev/hyprland/scripts/enroll_fingerprint.sh
+chmod +x ~/dev/hyprland/scripts/enroll_fingerprint.sh
 mkdir -p ~/.config/autostart
-cp ~/Dev/hyprland/config/fingerprint/enroll-fingerprint.desktop ~/.config/autostart/enroll-fingerprint.desktop
+cp ~/dev/hyprland/config/fingerprint/enroll-fingerprint.desktop ~/.config/autostart/enroll-fingerprint.desktop
 success "Fingerprint enrollment will prompt at next login."
 
 
