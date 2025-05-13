@@ -259,11 +259,11 @@ cd ..
 [[ -d "csharp" ]] && rm -rf csharp
 git clone --depth 1 git@github.com:Jimb0nda/csharp.git
 # Cpp
-[[ -d "cpp" ]] && rm -rf Cpp
-git clone --depth 1 git@github.com:Jimb0nda/Cpp.git
+[[ -d "cpp" ]] && rm -rf cpp
+git clone --depth 1 git@github.com:Jimb0nda/cpp.git
 # ML
-[[ -d "ml" ]] && rm -rf ML
-git clone --depth 1 git@github.com:Jimb0nda/ML.git
+[[ -d "ml" ]] && rm -rf ml
+git clone --depth 1 git@github.com:Jimb0nda/ml.git
 success "Dev Projects cloned and remote URLs set to SSH"
 
 info "Cloning Catppuccin for tmux"
