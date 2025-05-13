@@ -23,5 +23,3 @@ The following custom key bindings are enabled (can be customized in ~/.config/hy
 - <kbd>SUPER</kbd> + <kbd>F</kbd> to toggle fullscreen
 - <kbd>SUPER</kbd> + <kbd>1-9</kbd> to switch workspaces
 - more key bindings in ~/.config/hypr/conf/binds.conf
-
-or after the installation with right mouse click on Apps in the status bar.
