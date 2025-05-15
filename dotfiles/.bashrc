@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#alias find='fzf --preview="bat --color=always {}"'
+alias find='fzf --preview="bat --color=always {}"'
 alias edit='code $(fzf -m --preview="bat --color=always {}")'
 alias cdf='cd ~; cd $(fd --type directory --hidden | fzf)'
 alias auth='xhost +si:localuser:root'
