@@ -34,11 +34,11 @@ return {
                 capabilities = capabilities
             })
             lspconfig.omnisharp.setup({
-                cmd = {
-                    vim.fn.stdpath("data") .. "/mason/bin/omnisharp",  -- Path to OmniSharp installed by Mason
-                     "--languageserver",
+               cmd = {
+                    "/home/james/.omnisharp/OmniSharp",
+                    "--languageserver",
                     "--hostPID", tostring(vim.fn.getpid())
-                 },
+                },
                  capabilities = capabilities,
                 root_dir = require("lspconfig").util.root_pattern("*.csproj", "*.sln", ".git"), -- Ensure proper root detection
             })
