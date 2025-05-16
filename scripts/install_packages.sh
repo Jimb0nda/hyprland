@@ -57,6 +57,7 @@ YAY_PACKAGES=(
     "lazydocker"
     "lazygit"
     "hyprshot"
+    "clipist"
 )
 
 # Install required packages
