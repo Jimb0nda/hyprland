@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# Ask for sudo once and keep it alive
-sudo -v
-# Refresh sudo timestamp every 60 seconds while the script runs
-while true; do
-    sudo -n true
-    sleep 60
-    kill -0 "$$" || exit
-done 2>/dev/null &
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 source "$SCRIPT_DIR/scripts/logging.sh"
