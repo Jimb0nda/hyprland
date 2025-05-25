@@ -45,7 +45,6 @@ catch_error() {
     ERROR_OCCURRED=1
 }
 
-
 clear
 echo -e "${GREEN}"
 cat <<"EOF"
@@ -59,37 +58,16 @@ cat <<"EOF"
 EOF
 echo -e "${RESET}"
 
-info "Checking Git is installed"
-# Check if git is installed
-if ! command -v git &>/dev/null; then
-    warn "Git not found. Installing Git..."
-    sudo pacman -S git --noconfirm
-    success "Git installed successfully."
-else
-    success "Git is already installed."
-fi
-
-# Set up directories
-mkdir -p ~/dev ~/documents ~/pictures
-success "Directories added (Dev, Documents, Pictures)"
-
-REPO_DIR="$HOME/dev/hyprland"
-
-# Clone repositories
-info "Cloning Hyprland Project"
-cd ~/dev
-[[ -d "hyprland" ]] && rm -rf hyprland
-git clone --depth 1 https://github.com/Jimb0nda/hyprland.git
-success "Hyprland Project cloned"
-
-# Ensure .config directory exists
-mkdir -p ~/.config
-
 info "Entering Hyprland Folder for further install"
 cd hyprland
-source REPO_DIR/install.sh && success "Hyprland install script executed."
 
-source REPO_DIR/scripts/create_symlinks.sh
+source scripts/install_functions.sh
+
+# Run package installation
+info "Installing required packages..."
+source scripts/install_packages.sh && success "Hyprland install script executed."
+
+source scripts/create_symlinks.sh
 
 # Reload Bash configuration
 info "Sourcing bashrc"
@@ -100,7 +78,7 @@ sudo systemctl enable NetworkManager
 sudo systemctl enable bluetooth
 success "NetworkManager and Bluetooth services enabled."
 
-source REPO_DIR/scripts/setup_ssh.sh
+source scripts/setup_ssh.sh
 
 info "Cloning Catppuccin for tmux"
 mkdir -p ~/.config/tmux/plugins/catppuccin
