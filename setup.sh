@@ -58,13 +58,15 @@ cat <<"EOF"
 EOF
 echo -e "${RESET}"
 
-source scripts/install_functions.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+source SCRIPT_DIR/scripts/install_functions.sh
 
 # Run package installation
 info "Installing required packages..."
-source scripts/install_packages.sh && success "Hyprland install script executed."
+source SCRIPT_DIR/scripts/install_packages.sh && success "Hyprland install script executed."
 
-source scripts/create_symlinks.sh
+source SCRIPT_DIR/scripts/create_symlinks.sh
 
 # Reload Bash configuration
 info "Sourcing bashrc"
@@ -75,7 +77,7 @@ sudo systemctl enable NetworkManager
 sudo systemctl enable bluetooth
 success "NetworkManager and Bluetooth services enabled."
 
-source scripts/setup_ssh.sh
+source SCRIPT_DIR/scripts/setup_ssh.sh
 
 info "Cloning Catppuccin for tmux"
 mkdir -p ~/.config/tmux/plugins/catppuccin
