@@ -56,7 +56,7 @@ fi
 
 
 info "Cloning Dev Projects"
-cd ~/Dev
+cd ~/dev
 
 # Set clone base
 if [[ "$USE_SSH" =~ ^[Yy]$ ]]; then
