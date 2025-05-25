@@ -22,8 +22,8 @@ source "$SCRIPT_DIR/scripts/install_functions.sh"
 source "$SCRIPT_DIR/scripts/install_packages.sh"
 source "$SCRIPT_DIR/scripts/create_symlinks.sh"
 # Reload Bash configuration
-info "Sourcing bashrc"
-source ~/.bashrc
+#info "Sourcing bashrc"
+#source ~/.bashrc
 source "$SCRIPT_DIR/scripts/enable_services.sh"
 source "$SCRIPT_DIR/scripts/setup_ssh.sh"
 source "$SCRIPT_DIR/scripts/tmux_packages.sh"
