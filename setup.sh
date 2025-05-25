@@ -58,9 +58,6 @@ cat <<"EOF"
 EOF
 echo -e "${RESET}"
 
-info "Entering Hyprland Folder for further install"
-cd hyprland
-
 source scripts/install_functions.sh
 
 # Run package installation

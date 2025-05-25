@@ -69,5 +69,8 @@ success "Hyprland Project cloned"
 # Ensure .config directory exists
 mkdir -p ~/.config
 
+info "Entering Hyprland Folder for further install"
+cd hyprland
+
 bash setup.sh
 
