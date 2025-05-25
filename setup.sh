@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Ask for sudo once and keep it alive
+sudo -v
+# Refresh sudo timestamp every 60 seconds while the script runs
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+done 2>/dev/null &
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 source "$SCRIPT_DIR/scripts/logging.sh"
@@ -21,9 +30,6 @@ echo -e "${RESET}"
 source "$SCRIPT_DIR/scripts/install_functions.sh"
 source "$SCRIPT_DIR/scripts/install_packages.sh"
 source "$SCRIPT_DIR/scripts/create_symlinks.sh"
-# Reload Bash configuration
-#info "Sourcing bashrc"
-#source ~/.bashrc
 source "$SCRIPT_DIR/scripts/enable_services.sh"
 source "$SCRIPT_DIR/scripts/setup_ssh.sh"
 source "$SCRIPT_DIR/scripts/tmux_packages.sh"
