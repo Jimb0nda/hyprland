@@ -73,6 +73,8 @@ fi
 mkdir -p ~/dev ~/documents ~/pictures
 success "Directories added (Dev, Documents, Pictures)"
 
+REPO_DIR="$HOME/dev/hyprland"
+
 # Clone repositories
 info "Cloning Hyprland Project"
 cd ~/dev
@@ -85,9 +87,9 @@ mkdir -p ~/.config
 
 info "Entering Hyprland Folder for further install"
 cd hyprland
-source install.sh && success "Hyprland install script executed."
+source REPO_DIR/install.sh && success "Hyprland install script executed."
 
-source scripts/create_symlinks.sh
+source REPO_DIR/scripts/create_symlinks.sh
 
 # Reload Bash configuration
 info "Sourcing bashrc"
@@ -98,7 +100,7 @@ sudo systemctl enable NetworkManager
 sudo systemctl enable bluetooth
 success "NetworkManager and Bluetooth services enabled."
 
-source scripts/setup_ssh.sh
+source REPO_DIR/scripts/setup_ssh.sh
 
 info "Cloning Catppuccin for tmux"
 mkdir -p ~/.config/tmux/plugins/catppuccin
