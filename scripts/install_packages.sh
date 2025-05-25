@@ -60,6 +60,9 @@ YAY_PACKAGES=(
     "clipist"
 )
 
+# Run package installation
+info "Installing required packages..."
+
 # Install required packages
 info "Installing system packages..."
 _installPackages "${PACMAN_PACKAGES[@]}"

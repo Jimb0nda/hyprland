@@ -26,24 +26,6 @@ error() {
     ERROR_OCCURRED=1
 }
 
-#Create log file for caught errors
-LOGFILE="$HOME/setup.log"
-ERROR_OCCURRED=0
-
-# Catch errors and set error flag
-trap 'catch_error $? $LINENO "$BASH_COMMAND"' ERR
-
-catch_error() {
-    local code="$1"
-    local lineno="$2"
-    local cmd="$3"
-
-    echo -e "\n${RED}${BOLD}✖ Error on line $lineno (exit code $code): $cmd${RESET}"
-    echo "$(date '+%Y-%m-%d %H:%M:%S') :: ERROR on line $lineno (exit $code): $cmd" >> "$LOGFILE"
-    ERROR_OCCURRED=1
-}
-
-
 info "Checking Git is installed"
 # Check if git is installed
 if ! command -v git &>/dev/null; then
