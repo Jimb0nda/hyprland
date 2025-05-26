@@ -10,6 +10,9 @@ alias edit='code $(fzf -m --preview="bat --color=always {}")'
 alias cdf='cd ~; cd $(fd --type directory --hidden | fzf)'
 alias auth='xhost +si:localuser:root'
 
+#Virtual machine
+alias vm='virt-manager'
+
 #Services
 #alias service='systemctl'
 

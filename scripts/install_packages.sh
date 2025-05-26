@@ -45,6 +45,15 @@ PACMAN_PACKAGES=(
     "dotnet-sdk"
     "cmake"
     "dex"
+    "qemu-full"
+    "virt-manager"
+    "virt-viewer"
+    "libvirt"
+    "edk2-ovmf"
+    "dnsmasq"
+    "bridge-utils"
+    "vde2"
+    "openbsd-netcat"
 )
 
 # AUR packages to install via Yay
