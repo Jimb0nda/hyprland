@@ -36,11 +36,6 @@ else
     success "Git is already installed."
 fi
 
-# Set up directories
-mkdir -p ~/dev ~/documents ~/pictures
-success "Directories added (Dev, Documents, Pictures)"
-
-
 # Clone repositories
 info "Cloning Hyprland Project"
 cd ~/dev
