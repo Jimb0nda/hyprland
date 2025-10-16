@@ -54,6 +54,7 @@ PACMAN_PACKAGES=(
     "bridge-utils"
     "vde2"
     "openbsd-netcat"
+    "qbittorrent"
 )
 
 # AUR packages to install via Yay
