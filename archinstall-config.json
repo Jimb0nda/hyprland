@@ -1,0 +1,81 @@
+{
+  "archinstall-language": "English",
+  "timezone": "GB",
+  "locale_config": {
+    "kb_layout": "uk",
+    "sys_enc": "UTF-8",
+    "sys_lang": "en_GB"
+  },
+  "bootloader": "Systemd-boot",
+  "kernels": ["linux"],
+  "profile_config": {
+    "gfx_driver": "All open-source",
+    "greeter": "sddm",
+    "profile": {
+      "main": "Desktop",
+      "details": ["Hyprland"],
+      "custom_settings": {
+        "Hyprland": {
+          "seat_access": "polkit"
+        }
+      }
+    }
+  },
+  "disk_config": {
+    "config_type": "default_layout",
+    "device_modifications": [
+      {
+        "device": null,
+        "partitions": [
+          {
+            "type": "primary",
+            "fs_type": "fat32",
+            "mountpoint": "/boot",
+            "flags": ["boot", "esp"]
+          },
+          {
+            "type": "primary",
+            "fs_type": "btrfs",
+            "mount_options": ["compress=zstd"],
+            "btrfs": [
+              { "name": "@", "mountpoint": "/" },
+              { "name": "@home", "mountpoint": "/home" },
+              { "name": "@log", "mountpoint": "/var/log" },
+              { "name": "@pkg", "mountpoint": "/var/cache/pacman/pkg" },
+              { "name": "@.snapshots", "mountpoint": "/.snapshots" }
+            ]
+          }
+        ],
+        "wipe": true
+      }
+    ]
+  },
+  "user_accounts": {
+    "james": {
+      "superuser": true
+    }
+  },
+  "network_config": {
+    "type": "iso"
+  },
+  "audio_config": {
+    "audio": "pipewire"
+  },
+  "ntp": true,
+  "swap": true,
+  "silent": false,
+  "skip_ntp": false,
+  "offline": false,
+  "no_pkg_lookups": false,
+  "parallel downloads": 0,
+  "hostname": "archlinux",
+  "mount_point": "/mnt/archinstall",
+  "script": "guided",
+  "version": "3.0.2",
+  "debug": false,
+  "skip_version_check": false,
+  "uki": false,
+  "post_install_commands": [
+    "echo 'bash <(curl -s https://raw.githubusercontent.com/Jimb0nda/hyprland/main/setup.sh)'
+  ]
+}
