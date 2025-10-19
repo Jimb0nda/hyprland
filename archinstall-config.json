@@ -76,6 +76,6 @@
   "skip_version_check": false,
   "uki": false,
   "post_install_commands": [
-    "echo 'bash <\\(curl -s https://raw.githubusercontent.com/Jimb0nda/hyprland/main/setup.sh\\)'
+    "echo 'bash <(curl -s https://raw.githubusercontent.com/Jimb0nda/hyprland/main/setup.sh)'"
   ]
 }
