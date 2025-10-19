@@ -1,7 +1,7 @@
 # Hyprland Setup
 
 
-![alt text](2025-05-15-194705_hyprshot.png)
+![alt text](2025-10-19-104732_hyprshot.png)
 
 ## Arch Linux
 For installation, run:<br/>
@@ -17,9 +17,7 @@ The following custom key bindings are enabled (can be customized in ~/.config/hy
 - <kbd>SUPER</kbd> + <kbd>RETURN</kbd> to start terminal
 - <kbd>SUPER</kbd> + <kbd>Q</kbd> to quit an application
 - <kbd>SUPER</kbd> + <kbd>B</kbd> to start browser
-- <kbd>SUPER</kbd> + <kbd>M</kbd> to exit Hyprland
 - <kbd>SUPER</kbd> + <kbd>E</kbd> to start filemanager
-- <kbd>SUPER</kbd> + <kbd>T</kbd> to toggle floating
 - <kbd>SUPER</kbd> + <kbd>F</kbd> to toggle fullscreen
 - <kbd>SUPER</kbd> + <kbd>1-9</kbd> to switch workspaces
 - more key bindings in ~/.config/hypr/conf/binds.conf
