@@ -67,6 +67,7 @@ YAY_PACKAGES=(
     "lazygit"
     "hyprshot"
     "clipist"
+    "swaync"
 )
 
 # Run package installation
