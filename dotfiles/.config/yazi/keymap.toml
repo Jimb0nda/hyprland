@@ -1,0 +1,12 @@
+[mgr]
+prepend_keymap = [
+	# Open selected file/folder
+	{ on = "<Enter>", run = "open", desc = "Open selected file" },
+	{ on = "o",       run = "open", desc = "Open selected file" },
+
+	# Open-with menu
+	{ on = "O",       run = "open --interactive", desc = "Open with..." },
+
+	# Reveal in file manager
+	{ on = "R",       run = "open --interactive", desc = "Open with..." },
+]

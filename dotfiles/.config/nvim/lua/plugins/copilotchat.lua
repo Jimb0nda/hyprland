@@ -3,18 +3,17 @@ return {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
-      { "nvim-lua/plenary.nvim" },
       { "github/copilot.vim" },
     },
     build = "make tiktoken",
     opts = {
       debug = false,
       allow_insecure = false,
-      proxy = nil,
       timeout = 30000,
       temperature = 0.1,
       model = "claude-haiku-4.5",
       max_tokens = 2048,
+
       show_help = true,
       show_folds = true,
       highlight_selection = true,
@@ -23,13 +22,17 @@ return {
       auto_insert_mode = false,
       insert_at_end = false,
       clear_chat_on_new_prompt = false,
+
+      -- make read-only workspace inspection frictionless
+      trusted_tools = { "file", "glob", "grep" },
+
       window = {
-        layout = "float",
-        relative = "cursor",
-        width = 0.8,
-        height = 0.8,
-        row = 1,
+        layout = "vertical",
+        width = 0.4,
+        relative = "editor",
+        border = "single",
       },
+
       mappings = {
         complete = {
           detail = "Use @<message> to invoke prompt",
@@ -48,8 +51,7 @@ return {
           insert = "<C-m>",
         },
         accept_diff = {
-          normal = "<C-y>",
-          insert = "<C-y>",
+          normal = "ad",
         },
         yank_diff = {
           normal = "gy",
@@ -65,26 +67,41 @@ return {
         },
       },
     },
+
     config = function(_, opts)
-      require("CopilotChat").setup(opts)
-      
-      -- Keybindings for CopilotChat (simplified to use working commands)
+      vim.opt.splitright = true
+
+      local chat = require("CopilotChat")
+      chat.setup(opts)
+
       local map = vim.keymap.set
-      map("n", "<leader>cpt", "<cmd>CopilotChatToggle<CR>", { noremap = true, silent = true })
-      map("n", "<leader>cpe", "<cmd>CopilotChat Explain this code<CR>", { noremap = true, silent = true })
-      map("n", "<leader>cpf", "<cmd>CopilotChat Fix this code<CR>", { noremap = true, silent = true })
-      map("n", "<leader>cpd", "<cmd>CopilotChat Write documentation for this<CR>", { noremap = true, silent = true })
-      map("n", "<leader>cpr", "<cmd>CopilotChat Review this code<CR>", { noremap = true, silent = true })
-      map("n", "<leader>cpo", "<cmd>CopilotChat Optimize this code<CR>", { noremap = true, silent = true })
-      map("n", "<leader>cpx", "<cmd>CopilotChat Write tests for this<CR>", { noremap = true, silent = true })
-      map("n", "<leader>cph", "<cmd>CopilotChat Refactor this code<CR>", { noremap = true, silent = true })
-      map("v", "<leader>cpe", "<cmd>CopilotChat Explain this code<CR>", { noremap = true, silent = true })
-      map("v", "<leader>cpf", "<cmd>CopilotChat Fix this code<CR>", { noremap = true, silent = true })
-      map("v", "<leader>cpd", "<cmd>CopilotChat Write documentation for this<CR>", { noremap = true, silent = true })
-      map("v", "<leader>cpr", "<cmd>CopilotChat Review this code<CR>", { noremap = true, silent = true })
-      map("v", "<leader>cpo", "<cmd>CopilotChat Optimize this code<CR>", { noremap = true, silent = true })
-      map("v", "<leader>cpx", "<cmd>CopilotChat Write tests for this<CR>", { noremap = true, silent = true })
-      map("v", "<leader>cph", "<cmd>CopilotChat Refactor this code<CR>", { noremap = true, silent = true })
+
+      -- Open chat with current buffer + workspace tools as sticky context
+      map("n", "<leader>cpt", function() chat.open({sticky = { "#buffer:listed", "@copilot" },})
+        end, { noremap = true, silent = true })
+
+      -- Ask against current buffer
+      map("n", "<leader>cpr", function() chat.ask("Review this code", {sticky = { "#buffer:listed", "@copilot" },})
+        end, { noremap = true, silent = true })
+      map("n", "<leader>cpe", function() chat.ask("Explain this code", {sticky = { "#buffer:listed", "@copilot" },})
+        end, { noremap = true, silent = true })
+      map("n", "<leader>cpf", function() chat.ask("Fix this code", {sticky = { "#buffer:listed", "@copilot" },})
+        end, { noremap = true, silent = true })
+      map("n", "<leader>cpd", function() chat.ask("Write documentation for this", {sticky = { "#buffer:listed", "@copilot" },})
+        end, { noremap = true, silent = true })
+      map("n", "<leader>cpo", function() chat.ask("Optimize this code", {sticky = { "#buffer:listed", "@copilot" },})
+        end, { noremap = true, silent = true })
+      map("n", "<leader>cpx", function() chat.ask("Write tests for this", {sticky = { "#buffer:listed", "@copilot" },})
+        end, { noremap = true, silent = true })
+      map("n", "<leader>cph", function() chat.ask("Refactor this code", {sticky = { "#buffer:listed", "@copilot" },})
+        end, { noremap = true, silent = true })
+
+      -- Visual mode: use the selected code, but still allow workspace inspection
+      map("v", "<leader>cpr", function() chat.ask("Review this code", {
+          selection = require("CopilotChat.select").visual,
+          sticky = { "@copilot" },
+        })
+      end, { noremap = true, silent = true })
     end,
   },
 }

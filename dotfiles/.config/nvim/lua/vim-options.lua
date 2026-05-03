@@ -21,3 +21,24 @@ vim.keymap.set('v', '<C-c>', '"+y')  -- Copy selection (visual mode)
 -- Cutting to system clipboard
 vim.keymap.set('n', '<C-x>', '"+d$') -- Cut from cursor to end of line (normal mode)
 vim.keymap.set('v', '<C-x>', '"+d')  -- Cut selection (visual mode)
+
+vim.treesitter.language.register("c_sharp", "cs")
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "lua",
+    "vim",
+    "vimdoc",
+    "bash",
+    "c",
+    "cpp",
+    "python",
+    "markdown",
+    "json",
+    "yaml",
+    "cs",
+  },
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
+})
