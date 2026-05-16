@@ -1,0 +1,15 @@
+-- ~/.config/hypr/hyprland.lua
+
+require("conf.monitor")
+require("conf.autostart")
+require("conf.cursor")
+require("conf.environments")
+require("conf.input")
+require("conf.general")
+require("conf.decoration")
+require("conf.animations")
+require("conf.layouts")
+require("conf.gestures")
+require("conf.misc")
+require("conf.windowrules")
+require("conf.binds")
