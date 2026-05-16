@@ -1,7 +1,7 @@
 # Hyprland Setup
 
 
-![alt text](2025-10-19-104732_hyprshot.png)
+![alt text](2026-05-16-174646_hyprshot.png)
 
 ## Arch Linux
 For installation, run:<br/>
