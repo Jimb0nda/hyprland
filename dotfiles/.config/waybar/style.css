@@ -1,22 +1,28 @@
 /*
- * Waybar Custom Theme
- * Cleaned & Refactored by ChatGPT
- * 
- * ----------------------------------------------------- 
+ * Waybar Cyberpunk Theme
+ * Waybar-friendly: CSS + text separators + custom modules
+ * -----------------------------------------------------
 */
 
 /* -----------------------------------------------------
  * Color Palette
  * ----------------------------------------------------- */
 @define-color background #000000;
-@define-color workspacesbackground1 #FFFFFF;
-@define-color workspacesbackground2 #CCCCCC;
-@define-color bordercolor #8a2be2;
-@define-color textcolor1 #FFFFFF;
-@define-color textcolor2 #000000;
-@define-color iconcolor #FFFFFF;
-@define-color issueOrOff #f53c3c;
-@define-color goodOrConnected #90EE90;
+@define-color barbackground rgba(2, 6, 12, 0.96);
+
+@define-color textcolor1 #f8fbff;
+@define-color mutedtext #9aa8b8;
+@define-color iconcolor #f8fbff;
+
+@define-color accentCyan #00c8e8;
+@define-color accentMagenta #ff2ed1;
+
+@define-color goodOrConnected #5af78e;
+@define-color warning #ffb020;
+@define-color issueOrOff #ff3b5c;
+
+@define-color panelborder rgba(0, 200, 232, 0.30);
+@define-color panelborderDim rgba(0, 200, 232, 0.14);
 
 /* -----------------------------------------------------
  * Global Defaults
@@ -25,51 +31,378 @@
     font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     border: none;
     border-radius: 0px;
+    min-height: 0;
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-bottom: 0px solid #ffffff;
+    background-color: @barbackground;
+    color: @textcolor1;
+    border-top: none;
+    border-bottom: none;
+    box-shadow: none;
     transition: background-color 0.5s;
 }
 
 @keyframes blink {
     to {
-        background-color: @background;
         color: @textcolor1;
+        text-shadow: none;
     }
+}
+
+/* -----------------------------------------------------
+ * Shared Glow Helpers
+ * ----------------------------------------------------- */
+#custom-archLogo,
+#custom-sep1,
+#custom-sep2,
+#custom-sep3,
+#clockWeather,
+#clock,
+#custom-weather,
+#backlight,
+#bluetooth,
+#pulseaudio,
+#network,
+#temperature,
+#battery,
+#custom-menu {
+    text-shadow:
+        0 0 4px rgba(0, 200, 232, 0.70),
+        0 0 10px rgba(0, 200, 232, 0.25);
 }
 
 /* -----------------------------------------------------
  * Workspaces
  * ----------------------------------------------------- */
 #workspaces {
-    margin: 5px 1px 6px 1px;
-    padding: 0px 1px;
+    margin: 0px 14px 0px 8px;
+    padding: 0px;
     font-weight: bold;
     font-size: 16px;
-    color: @textcolor2;
+    color: @textcolor1;
 }
 
 #workspaces button {
-    margin: 4px 3px;
-    padding: 0px 5px;
-    border-radius: 15px;
-    color: @textcolor1;
-    transition: all 0.3s ease-in-out;
+    margin: 0px 6px;
+    padding: 2px 8px 5px 8px;
+    border-radius: 0px;
+    color: @mutedtext;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
 }
 
 #workspaces button.active {
-    background: @background;
-    color: @textcolor1;
-    border: 2px solid @bordercolor;
-    border-radius: 20px;
-    min-width: 40px;
+    background: rgba(255, 46, 209, 0.04);
+    color: @accentMagenta;
+    border: none;
+    border-bottom: 2px solid @accentMagenta;
+    text-shadow:
+        0 0 6px @accentMagenta,
+        0 0 12px rgba(255, 46, 209, 0.55);
+    box-shadow:
+        0 4px 10px -8px @accentMagenta;
+    min-width: 0px;
 }
 
 #workspaces button:hover {
-    color: @textcolor2;
-    border: 2px solid @bordercolor;
+    color: @accentMagenta;
+    background: rgba(255, 46, 209, 0.04);
+    border: none;
+    border-bottom: 2px solid @accentMagenta;
+    text-shadow:
+        0 0 6px @accentMagenta,
+        0 0 12px rgba(255, 46, 209, 0.55);
+}
+
+/* -----------------------------------------------------
+ * Cyber Separators
+ * ----------------------------------------------------- */
+#custom-sep1,
+#custom-sep2,
+#custom-sep3 {
+    color: rgba(0, 200, 232, 0.70);
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0px 18px;
+    padding: 0px 2px;
+}
+
+/* -----------------------------------------------------
+ * Arch Logo
+ * ----------------------------------------------------- */
+#custom-archLogo {
+    margin: 2px 12px 2px 12px;
+    padding: 0px 10px 0px 0px;
+    font-size: 36px;
+    color: @accentCyan;
+    border-bottom: none;
+    text-shadow:
+        0 0 7px @accentCyan,
+        0 0 16px rgba(0, 200, 232, 0.50);
+}
+
+/* -----------------------------------------------------
+ * Clock & Weather
+ * ----------------------------------------------------- */
+#clockWeather {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0px 18px;
+    margin: 0px 10px;
+    background: transparent;
+    border: none;
+    color: @accentCyan;
+}
+
+#clock {
+    margin: 0px 18px 0px 0px;
+    color: @accentCyan;
+}
+
+#custom-weather {
+    color: @accentCyan;
+}
+
+#clockWeather:hover,
+#clock:hover,
+#custom-weather:hover {
+    color: @accentMagenta;
+    text-shadow:
+        0 0 7px @accentMagenta,
+        0 0 16px rgba(255, 46, 209, 0.55);
+}
+
+/* -----------------------------------------------------
+ * Status Indicator
+ * ----------------------------------------------------- */
+#custom-statusIndicator {
+    color: @accentMagenta;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0px 18px;
+    margin: 0px 8px;
+    text-shadow:
+        0 0 8px @accentMagenta,
+        0 0 16px rgba(255, 46, 209, 0.48);
+}
+
+#custom-statusIndicator:hover {
+    color: @accentCyan;
+    text-shadow:
+        0 0 7px @accentCyan,
+        0 0 16px rgba(0, 200, 232, 0.45);
+}
+
+/* -----------------------------------------------------
+ * Top Bar Modules
+ * ----------------------------------------------------- */
+#network,
+#pulseaudio,
+#battery,
+#temperature,
+#backlight,
+#hardware {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0px 8px;
+    margin: 0px 5px;
+    border-radius: 0px;
+    background-color: transparent;
+    border: none;
+    color: @accentCyan;
+}
+
+/* -----------------------------------------------------
+ * Backlight
+ * ----------------------------------------------------- */
+#backlight {
+    color: @accentCyan;
+}
+
+#backlight:hover {
+    color: @accentMagenta;
+    text-shadow:
+        0 0 7px @accentMagenta,
+        0 0 16px rgba(255, 46, 209, 0.55);
+}
+
+/* -----------------------------------------------------
+ * Bluetooth
+ * ----------------------------------------------------- */
+#bluetooth,
+#bluetooth.on,
+#bluetooth.connected,
+#bluetooth.disabled {
+    font-size: 28px;
+    padding: 0px 10px;
+    margin: 0px 5px;
+    background-color: transparent;
+    border: none;
+}
+
+#bluetooth,
+#bluetooth.on,
+#bluetooth.connected {
+    color: @accentCyan;
+}
+
+#bluetooth:hover,
+#bluetooth.connected:hover {
+    color: @accentMagenta;
+    text-shadow:
+        0 0 7px @accentMagenta,
+        0 0 16px rgba(255, 46, 209, 0.55);
+}
+
+#bluetooth.disabled {
+    color: @issueOrOff;
+    text-shadow:
+        0 0 6px @issueOrOff,
+        0 0 14px rgba(255, 59, 92, 0.45);
+}
+
+/* -----------------------------------------------------
+ * Pulseaudio
+ * ----------------------------------------------------- */
+#pulseaudio {
+    color: @accentCyan;
+}
+
+#pulseaudio:hover {
+    color: @accentMagenta;
+    text-shadow:
+        0 0 7px @accentMagenta,
+        0 0 16px rgba(255, 46, 209, 0.55);
+}
+
+#pulseaudio.muted {
+    color: @issueOrOff;
+    text-shadow:
+        0 0 6px @issueOrOff,
+        0 0 14px rgba(255, 59, 92, 0.45);
+}
+
+/* -----------------------------------------------------
+ * Network
+ * ----------------------------------------------------- */
+#network.ethernet,
+#network.wifi {
+    background-color: transparent;
+    border: none;
+    color: @accentCyan;
+}
+
+#network.wifi:hover,
+#network.ethernet:hover {
+    color: @accentMagenta;
+    text-shadow:
+        0 0 7px @accentMagenta,
+        0 0 16px rgba(255, 46, 209, 0.55);
+}
+
+#network.disconnected {
+    background-color: transparent;
+    border: none;
+    color: @issueOrOff;
+    text-shadow:
+        0 0 6px @issueOrOff,
+        0 0 14px rgba(255, 59, 92, 0.45);
+}
+
+/* -----------------------------------------------------
+ * Temperature
+ * ----------------------------------------------------- */
+#temperature {
+    color: @accentCyan;
+}
+
+#temperature:hover {
+    color: @accentMagenta;
+    text-shadow:
+        0 0 7px @accentMagenta,
+        0 0 16px rgba(255, 46, 209, 0.55);
+}
+
+#temperature.critical {
+    background-color: transparent;
+    border: none;
+    color: @issueOrOff;
+    text-shadow:
+        0 0 6px @issueOrOff,
+        0 0 14px rgba(255, 59, 92, 0.45);
+    animation: blink 0.5s linear infinite alternate;
+}
+
+/* -----------------------------------------------------
+ * Battery
+ * ----------------------------------------------------- */
+#battery {
+    color: @accentCyan;
+}
+
+#battery:hover {
+    color: @accentMagenta;
+    text-shadow:
+        0 0 7px @accentMagenta,
+        0 0 16px rgba(255, 46, 209, 0.55);
+}
+
+#battery.charging,
+#battery.plugged {
+    background-color: transparent;
+    border: none;
+    color: @accentCyan;
+}
+
+#battery.charging:hover,
+#battery.plugged:hover {
+    color: @accentMagenta;
+    text-shadow:
+        0 0 7px @accentMagenta,
+        0 0 16px rgba(255, 46, 209, 0.55);
+}
+
+#battery.warning:not(.charging) {
+    background-color: transparent;
+    border: none;
+    color: @warning;
+    text-shadow:
+        0 0 6px @warning,
+        0 0 14px rgba(255, 176, 32, 0.45);
+}
+
+#battery.critical:not(.charging) {
+    background-color: transparent;
+    border: none;
+    color: @issueOrOff;
+    text-shadow:
+        0 0 6px @issueOrOff,
+        0 0 14px rgba(255, 59, 92, 0.45);
+    animation: blink 0.5s linear infinite alternate;
+}
+
+/* -----------------------------------------------------
+ * Menu
+ * ----------------------------------------------------- */
+#custom-menu,
+#custom-logout,
+#custom-restart,
+#custom-shutdown {
+    margin: 0px 14px 0px 0px;
+    font-size: 20px;
+    color: @accentCyan;
+}
+
+#custom-menu:hover,
+#custom-logout:hover,
+#custom-restart:hover,
+#custom-shutdown:hover {
+    color: @accentMagenta;
+    text-shadow:
+        0 0 8px @accentMagenta,
+        0 0 16px rgba(255, 46, 209, 0.65);
 }
 
 /* -----------------------------------------------------
@@ -77,9 +410,10 @@ window#waybar {
  * ----------------------------------------------------- */
 tooltip {
     background-color: @background;
-    opacity: 0.8;
+    opacity: 0.94;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 8px;
+    border: 1px solid @panelborder;
 }
 
 tooltip label {
@@ -87,173 +421,35 @@ tooltip label {
 }
 
 /* -----------------------------------------------------
- * Window
+ * Window / Taskbar Compatibility
  * ----------------------------------------------------- */
 #window {
-    background: @background;
-    margin: 10px 15px 10px 0px;
-    padding: 2px 10px;
-    border-radius: 12px;
+    background: transparent;
+    margin: 0px 15px 0px 0px;
+    padding: 0px 10px;
     font-size: 16px;
-    color: @textcolor1;
+    color: @mutedtext;
 }
 
 window#waybar.empty #window {
     background-color: transparent;
 }
 
-/* -----------------------------------------------------
- * Taskbar
- * ----------------------------------------------------- */
 #taskbar {
-    background: @background;
-    margin: 6px 15px 6px 0px;
-    border-radius: 15px;
-    border: 3px solid @background;
+    background: transparent;
+    margin: 0px 15px 0px 0px;
+    border-radius: 0px;
+    border: none;
 }
 
 #taskbar button {
     padding: 0px 5px;
-    border-radius: 15px;
-}
-
-/* -----------------------------------------------------
- * Common Pill Style
- * ----------------------------------------------------- */
-#bluetooth,
-#bluetooth.on,
-#network,
-#pulseaudio,
-#battery,
-#temperature,
-#backlight,
-#hardware,
-#clockWeather {
-    font-size: 16px;
-    font-weight: bold;
-    padding: 8px 10px;
-    margin: 10px 10px 10px 0px;
-    border-radius: 20px;
-    background-color: @background;
-    border: 2px solid @bordercolor;
-    color: @textcolor1;
-}
-
-/* -----------------------------------------------------
- * Grouped Layout Adjustments
- * ----------------------------------------------------- */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-/* -----------------------------------------------------
- * Custom Menu & System
- * ----------------------------------------------------- */
-#custom-menu,
-#custom-logout,
-#custom-restart,
-#custom-shutdown {
-    margin: 2px 20px 0px 0px;
-    font-size: 20px;
-    color: @iconcolor;
-}
-
-#custom-archLogo {
-    margin: 5px 1px 5px 10px;
-    font-size: 30px;
-    color: #1793d1;
-}
-
-/* -----------------------------------------------------
- * Hardware Group
- * ----------------------------------------------------- */
-#memory,
-#cpu,
-#disk {
-    font-size: 18px;
-    color: @iconcolor;
-}
-
-#temperature.critical {
-    background-color: @issueOrOff;
-    color: @textcolor2;
-    border: 2px solid red;
-    animation: blink 0.5s linear infinite alternate;
-}
-
-/* -----------------------------------------------------
- * Clock & Weather
- * ----------------------------------------------------- */
-#clock {
-    margin: 0px 15px 0px 0px;
-}
-
-#clockWeather,
-#hardware {
-    color: @textcolor1;
-}
-
-/* -----------------------------------------------------
- * Pulseaudio
- * ----------------------------------------------------- */
-#pulseaudio.muted {
-    color: @textcolor1;
-}
-
-/* -----------------------------------------------------
- * Network States
- * ----------------------------------------------------- */
-#network.ethernet,
-#network.wifi {
-    border: 2px solid @bordercolor;
-}
-
-#network.disconnected {
-    border: 2px solid @issueOrOff;
-}
-
-/* -----------------------------------------------------
- * Bluetooth States
- * ----------------------------------------------------- */
-#bluetooth, #bluetooth.on {
-    font-size: 20px;
-}
-
-#bluetooth.connected {
-    border: 2px solid @goodOrConnected;
-}
-
-#bluetooth.disabled {
-    border: 2px solid @issueOrOff;
-}
-
-/* -----------------------------------------------------
- * Battery States
- * ----------------------------------------------------- */
-#battery.charging,
-#battery.plugged {
-    background-color: @background;
-    border: 2px solid @bordercolor;
-}
-
-#battery.warning:not(.charging) {
-    border: 2px solid #FFBF00;
-}
-
-#battery.critical:not(.charging) {
-    background-color: @issueOrOff;
-    color: @textcolor2;
-    border: 2px solid red;
-    animation: blink 0.5s linear infinite alternate;
+    border-radius: 0px;
 }
 
 /* -----------------------------------------------------
  * Focus Styling
  * ----------------------------------------------------- */
 label:focus {
-    background-color: #000000;
+    background-color: transparent;
 }
-

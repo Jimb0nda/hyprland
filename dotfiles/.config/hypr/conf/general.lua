@@ -1,24 +1,24 @@
 -- ~/.config/hypr/conf/general.lua
 
 hl.config({
-  general = {
-    gaps_in = 3,
-    gaps_out = 10,
-    border_size = 2,
+    general = {
+        gaps_in = 3,
+        gaps_out = 5,
+        border_size = 1,
 
-    col = {
-      active_border = {
-        colors = {
-          "rgba(4169e1EE)",
-          "rgba(8a2be2EE)",
+        col = {
+            active_border = {
+                colors = {
+                    "rgba(00e5ff66)",
+                    "rgba(ff2ed166)",
+                },
+                angle = 45,
+            },
+
+            inactive_border = "rgba(ffffff10)",
         },
-        angle = 45,
-      },
 
-      inactive_border = "rgba(594848aa)",
+        layout = "dwindle",
+        resize_on_border = true,
     },
-
-    layout = "dwindle",
-    resize_on_border = true,
-  },
 })

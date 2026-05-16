@@ -1,15 +1,10 @@
 {
     // Workspaces
-    "hyprland/workspaces" : {
+    "hyprland/workspaces": {
         "on-click": "activate",
         "active-only": false,
         "all-outputs": true,
         "format": "{icon}",
-        "format-icons": {
-            "urgent": "",
-            "active": "",
-            "default": ""
-        },
         "persistent-workspaces": {
             "*": 5
         },
@@ -23,9 +18,32 @@
             "7": "VII",
             "8": "VIII",
             "9": "IX",
-            "10": "X",
+            "10": "X"
+        }
+    },
 
-        },       
+    // Cyberpunk separators
+    "custom/sep1": {
+        "format": "│",
+        "tooltip": false
+    },
+
+    "custom/sep2": {
+        "format": "│",
+        "tooltip": false
+    },
+
+    "custom/sep3": {
+        "format": "│",
+        "tooltip": false
+    },
+
+    // Status indicator
+    "custom/statusIndicator": {
+        "format": "··· ─╱╲─ ···",
+        "tooltip": false,
+        "interval": 5,
+        "exec": "echo '··· ─╱╲─ ···'"
     },
 
     // Power Menu
@@ -34,48 +52,50 @@
         "tooltip-format": "Powermenu",
         "tooltip": false
     },
+
     "custom/logout": {
         "format": "󰗽",
-        "tooltip-format": "Powermenu",
+        "tooltip-format": "Logout",
         "on-click": "killall -9 Hyprland",
         "tooltip": false
     },
+
     "custom/shutdown": {
         "format": "",
-        "tooltip-format": "Powermenu",
+        "tooltip-format": "Shutdown",
         "on-click": "poweroff",
         "tooltip": false
     },
+
     "custom/restart": {
         "format": "",
-        "tooltip-format": "Powermenu",
+        "tooltip-format": "Restart",
         "on-click": "reboot",
         "tooltip": false
     },
-    
+
     "group/menu": {
         "orientation": "horizontal",
         "drawer": {
             "transition-duration": 500,
             "children-class": "not-power",
-            "transition-left-to-right": true,
+            "transition-left-to-right": true
         },
-		"modules": [
-			"custom/menu",
-			"custom/logout",
+        "modules": [
+            "custom/menu",
+            "custom/logout",
             "custom/shutdown",
             "custom/restart"
-		]
-	},
+        ]
+    },
 
     // Clock
     "clock": {
         "format": "{:%a, %d %b    %H:%M}",
-        //"timezone": "Europe/London",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
         "format-alt": "{:%d-%m-%Y}"
     },
-        
+
     // Weather
     "custom/weather": {
         "format": "{}°",
@@ -86,12 +106,12 @@
     },
 
     "group/clockWeather": {
-		"orientation": "horizontal",
-		"modules": [
-			"clock",
-			"custom/weather",
-		]
-	},
+        "orientation": "horizontal",
+        "modules": [
+            "clock",
+            "custom/weather"
+        ]
+    },
 
     // System
     "custom/archLogo": {
@@ -111,7 +131,7 @@
         "on-click": "kitty -e btop"
     },
 
-    // Harddisc space used
+    // Disk
     "disk": {
         "interval": 30,
         "format": "/ D {percentage_used}% ",
@@ -131,7 +151,7 @@
         "format": "{ifname}",
         "format-wifi": "   {signalStrength}%",
         "format-ethernet": "  {ipaddr}",
-        "format-disconnected": "Not connected", //An empty format will hide the module.
+        "format-disconnected": "Not connected",
         "tooltip-format": " {ifname} via {gwaddri}",
         "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
         "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
@@ -177,29 +197,29 @@
     "bluetooth": {
         "format": "",
         "format-disabled": "",
-        "format-connected": " {num_connections}",
+        "format-connected": "",
         "tooltip-format": "{device_alias}",
         "tooltip-format-connected": " {device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}",
         "on-click": "blueman-manager"
     },
 
-    // Other
+    // User
     "user": {
         "format": "{user}",
         "interval": 60,
-        "icon": false,
+        "icon": false
     },
 
-    // Idle Inhibator
+    // Idle Inhibitor
     "idle_inhibitor": {
         "format": "{icon}",
         "tooltip": true,
-        "format-icons":{
+        "format-icons": {
             "activated": "",
             "deactivated": ""
         },
-        "on-click-right": "hyprlock"        
+        "on-click-right": "hyprlock"
     },
 
     // Backlight
