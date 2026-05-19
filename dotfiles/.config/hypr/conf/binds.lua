@@ -41,7 +41,7 @@ hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m window -o ~/pictures"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region -o ~/pictures"))
 
 -- swaync Notification Center
-hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
 
 -- App Actions
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("code"))

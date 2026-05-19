@@ -94,6 +94,7 @@ clone() {
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias y='yazi'
 
 PS1='[\u@\h \W]\$ '
 
